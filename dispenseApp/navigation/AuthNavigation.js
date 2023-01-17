@@ -29,4 +29,4 @@ const AuthNavigation = () => {
 
 export default AuthNavigation;
 
-const styles = StyleSheet.create({});
+

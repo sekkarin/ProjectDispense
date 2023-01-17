@@ -4,9 +4,8 @@ import React from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
-import {Pressable} from 'react-native';
 import {Button} from '@rneui/base';
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.gardBody}>
@@ -61,6 +60,9 @@ const LoginScreen = () => {
               colors: ['#07B5FC', '#7DE2DC'],
               start: {x: 0, y: 0.5},
               end: {x: 1, y: 0.5},
+            }}
+            onPress={() => {
+              navigation.navigate('ManagemMdicine', {screen: 'MainScreen'});
             }}>
             Login
           </Button>
