@@ -84,7 +84,7 @@ const LoginScreen = ({navigation}) => {
           </View>
         </View>
         <CheckBox
-          containerStyle={{marginLeft: 50,}}
+          containerStyle={{marginLeft: 50}}
           title="จดจำรหัสผ่านของฉัน"
           checked={checked}
           onPress={toggleCheckbox}
@@ -122,7 +122,7 @@ const LoginScreen = ({navigation}) => {
             alignItems: 'center',
             marginTop: 10,
           }}>
-          <Text style={{}}>ลืมรหัสผ่าน</Text>
+          <Text style={{marginBottom: 40, marginTop: 10}}>ลืมรหัสผ่าน</Text>
         </View>
       </View>
     </View>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDDCDC',
   },
   gardBody: {
-    height: '90%',
+    // height: '90%',
     backgroundColor: 'white',
     margin: 30,
     // flex: 1,
@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     width: '80%',
-    // height: 50,
-    // marginVertical: 10,
+    height: 50,
+    marginTop: 15,
   },
   inputStyle: {
     borderColor: 'black',
