@@ -1,15 +1,45 @@
 /* eslint-disable react/self-closing-comp */
-import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {Image, StyleSheet, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
-import {Button} from '@rneui/base';
-import {Icon} from '@rneui/themed';
+import {Button, Header, Icon, Text} from '@rneui/base';
 
 const RegisterScreen = ({navigation}) => {
   return (
     <ScrollView>
+      <Header
+        // eslint-disable-next-line react-native/no-inline-styles
+        containerStyle={{
+          height: 90,
+          borderRadius: 18,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        ViewComponent={LinearGradient} // Don't forget this!
+        linearGradientProps={{
+          colors: ['#00B2FF', '#26CFC5'],
+          start: {x: 0, y: 2},
+          end: {x: 2, y: 0},
+        }}
+        centerComponent={{
+          text: 'แจ้งเตือนการบริโภคยา',
+          style: styles.heading,
+        }}
+        leftComponent={
+          <Button
+            onPress={() => {
+              // console.log('HelLo Leave');
+              navigation.goBack();
+            }}
+            buttonStyle={{
+              backgroundColor: 'rgba(52, 52, 52, 0.0)',
+            }}>
+            <Icon name="arrowleft" type="antdesign" color="white" size={32} />
+          </Button>
+        }
+      />
       <View style={styles.container}>
         <View style={styles.gardBody}>
           {/* หัวข้อบนสุด */}
@@ -17,7 +47,7 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.headerBody}>
               {/* ชื่อไฟล์รูปห้ามมีช่องว่าง */}
               <Image
-        source={require('../../assets/images/image2.png')}
+                source={require('../../assets/images/image2.png')}
                 style={styles.image}></Image>
               <Text style={styles.headTitle}>แจ้งเตือนการบริโภคยา</Text>
             </View>
@@ -36,54 +66,54 @@ const RegisterScreen = ({navigation}) => {
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
-              }}></Input>
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
               <Input
                 placeholder="นามสกุล"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
-              }}></Input>
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
               <Input
                 placeholder="อายุ (ปี)"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
-              }}></Input>
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
               <Input
                 placeholder="น้ำหนัก (กก.)"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
                 }}></Input>
               <Input
                 placeholder="โรคประจำตัว"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
                 }}></Input>
               <Input
                 placeholder="ประวัติแพ้ยา"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
                 }}></Input>
             </View>
           </View>
@@ -100,32 +130,32 @@ const RegisterScreen = ({navigation}) => {
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
-              }}></Input>
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
               <Input
                 placeholder="รหัสผ่าน"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
-              }}></Input>
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
               <Input
                 placeholder="เบอร์โทรศัพท์"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
-                borderColor: '#76DFDE',
-                borderWidth: 2,
-                borderRadius: 5,
-              }}></Input>
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
             </View>
           </View>
           {/* ปุ่ม SUMIT */}
-          <View style={styles.bodyBotton}>
+          <View style={[styles.bodyBotton, {marginBottom: 20, marginTop: 20}]}>
             <Button
               // eslint-disable-next-line react-native/no-inline-styles
               containerStyle={{
@@ -144,6 +174,24 @@ const RegisterScreen = ({navigation}) => {
               }}>
               Register
             </Button>
+            <View
+              // eslint-disable-next-line react-native/no-inline-styles
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 10,
+              }}>
+              <Text style={{marginTop: 5, marginBottom: 20}}>
+                หากเป็นสมาชิกอยู่แล้ว{' '}
+                <Text
+                  style={{color: '#35C5F5'}}
+                  onPress={() => {
+                    navigation.navigate('LoginScreen');
+                  }}>
+                  เข้าสู่ระบบ
+                </Text>
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -159,7 +207,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDDCDC',
   },
   gardBody: {
-    height: '90%',
     backgroundColor: 'white',
     margin: 30,
     // flex: 1,
@@ -186,7 +233,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   bodyForm: {
-    marginTop: 20,
+    marginTop: 0,
   },
   LinearGratitleForm: {
     padding: 10,
@@ -200,8 +247,8 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     width: '80%',
-    // height: 50,
-    // marginVertical: 10,
+    height: 50,
+    marginTop: 15,
   },
   inputStyle: {
     borderColor: 'black',
@@ -222,5 +269,11 @@ const styles = StyleSheet.create({
   bodyBotton: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  heading: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    marginTop: 14,
   },
 });

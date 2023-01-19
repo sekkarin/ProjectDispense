@@ -6,7 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
 import {Button, Header, Icon, Text} from '@rneui/base';
 
-const LoginForgot = ({navigation}) => {
+const ChangPassword = ({navigation}) => {
   return (
     <View>
       <Header
@@ -58,11 +58,35 @@ const LoginForgot = ({navigation}) => {
             <LinearGradient
               style={styles.LinearGratitleForm}
               colors={['#06A8ED', '#09E9F8']}>
-              <Text style={styles.textTitleForm}>ค้นหาบัญชีของคุณกัน</Text>
+              <Text style={styles.textTitleForm}>กู้คืนบัญชีของคุณ</Text>
             </LinearGradient>
             <View style={styles.containerInput}>
+              <View>
+                <LinearGradient
+                  style={
+                    ([styles.LinearGratitleForm],
+                    {
+                      borderRadius: 8,
+                      paddingVertical: 15,
+                      paddingHorizontal: 45,
+                    })
+                  }
+                  colors={['#06A8ED', '#09E9F8']}>
+                  <Text style={styles.textTitleForm}>กู้คืนบัญชีของคุณ</Text>
+                </LinearGradient>
+              </View>
               <Input
-                placeholder="อีเมล์"
+                placeholder="กรอกพาสเวิร์ดใหม่"
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                // eslint-disable-next-line react-native/no-inline-styles
+                inputContainerStyle={{
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}></Input>
+              <Input
+                placeholder="ยืนยันพาสเวิร์ดอีกครั้ง"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 // eslint-disable-next-line react-native/no-inline-styles
@@ -74,7 +98,7 @@ const LoginForgot = ({navigation}) => {
             </View>
           </View>
           {/* ปุ่ม SUMIT */}
-          <View style={[styles.bodyBotton, {marginTop: 20, marginBottom: 200}]}>
+          <View style={[styles.bodyBotton, {marginTop: 20, marginBottom: 150}]}>
             <Button
               title={'Next'}
               // eslint-disable-next-line react-native/no-inline-styles
@@ -99,7 +123,7 @@ const LoginForgot = ({navigation}) => {
   );
 };
 
-export default LoginForgot;
+export default ChangPassword;
 
 const styles = StyleSheet.create({
   container: {

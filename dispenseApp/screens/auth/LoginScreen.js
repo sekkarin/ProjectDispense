@@ -1,10 +1,10 @@
 /* eslint-disable react/self-closing-comp */
-import {Image, StyleSheet, Text, View, useState} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, CheckBox} from '@rneui/themed';
-import {Button, Header, Icon} from '@rneui/base';
+import {Button, Header, Icon, Text} from '@rneui/base';
 
 const LoginScreen = ({navigation}) => {
   const [checked, setChecked] = React.useState(true);
@@ -35,6 +35,7 @@ const LoginScreen = ({navigation}) => {
               // console.log('HelLo Leave');
               navigation.goBack();
             }}
+            // eslint-disable-next-line react-native/no-inline-styles
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',
             }}>
@@ -84,7 +85,8 @@ const LoginScreen = ({navigation}) => {
           </View>
         </View>
         <CheckBox
-          containerStyle={{marginLeft: 50,}}
+          // eslint-disable-next-line react-native/no-inline-styles
+          containerStyle={{marginLeft: 50}}
           title="จดจำรหัสผ่านของฉัน"
           checked={checked}
           onPress={toggleCheckbox}
@@ -92,7 +94,7 @@ const LoginScreen = ({navigation}) => {
           iconType="material-community"
           checkedIcon="checkbox-marked"
           uncheckedIcon="checkbox-blank-outline"
-          checkedColor="blue"
+          checkedColor="#35C5F5"
         />
         {/* ปุ่ม SUMIT */}
         <View style={styles.bodyBotton}>
@@ -122,7 +124,16 @@ const LoginScreen = ({navigation}) => {
             alignItems: 'center',
             marginTop: 10,
           }}>
-          <Text style={{marginBottom: 40, marginTop: 10}}>ลืมรหัสผ่าน</Text>
+          <Text style={{marginTop: 5, marginBottom: 40}}>
+            ลืมรหัสผ่าน{' '}
+            <Text
+            style={{color:"#35C5F5"}}
+              onPress={() => {
+                navigation.navigate('LoginForgot');
+              }}>
+              คลิกที่นี่
+            </Text>
+          </Text>
         </View>
       </View>
     </View>
