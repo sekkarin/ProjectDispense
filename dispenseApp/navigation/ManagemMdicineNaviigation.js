@@ -7,6 +7,8 @@ import Qrcode from '../screens/QrCodeScreens/Qrcode';
 import ProfileScreen from '../screens/profile/ProfileScreen';
 // file-medical
 import {Icon} from '@rneui/base';
+import ListMedicine from '../screens/managemMdicine/ListMedicine';
+import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -24,6 +26,23 @@ const TapNavigation = () => {
             return (
               <Icon
                 name="medical-services"
+                type="fontAwesome5"
+                color="#35C5F5"
+                size={32}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="HisoryMdc"
+        component={HisoryMdc}
+        options={{
+          title: 'History',
+          tabBarIcon: () => {
+            return (
+              <Icon
+                name="history"
                 type="fontAwesome5"
                 color="#35C5F5"
                 size={32}
@@ -52,6 +71,7 @@ const TapNavigation = () => {
         name="ProfileScreen"
         component={ProfileScreen}
         options={{
+          title: 'Profile',
           tabBarIcon: () => {
             return (
               <Icon
@@ -79,6 +99,11 @@ const ManagemMdicine = () => {
       <Stack.Screen
         name="AddMedicine"
         component={AddMedicine}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListMedicine"
+        component={ListMedicine}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

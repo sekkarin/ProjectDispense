@@ -1,4 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import WellcomeScreen from '../screens/auth/WellcomeScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -28,5 +27,3 @@ const AuthNavigation = () => {
 };
 
 export default AuthNavigation;
-
-
