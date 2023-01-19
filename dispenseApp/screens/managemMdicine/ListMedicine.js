@@ -2,7 +2,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-
+// TODO: เลือกวัน
+// [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {
   return (
     <View>
@@ -33,7 +34,10 @@ const ListMedicine = ({navigation}) => {
         }}
         centerComponent={{text: 'แจ้งเตือนการบริโภคยา', style: styles.heading}}
       />
+      {/* TODO: เลือกวัน */}
       <Text>ListMedicine</Text>
+      {/* TODO: แสดงช่วงเวลา */}
+      <View />
     </View>
   );
 };
