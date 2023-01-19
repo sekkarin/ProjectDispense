@@ -61,7 +61,7 @@ const StartAppScreen = ({navigation}) => {
           color: '#35C5F5',
         }}
         onPress={() => {
-          // navigation.navigate('StartAppScreen');
+          navigation.navigate('RegisterScreen');
         }}
       />
     </LinearGradient>
@@ -81,12 +81,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: 'white',
     fontWeight: 'bold',
-    
   },
   image: {
     width: 192,
     height: 192,
-    marginVertical:50
+    marginVertical: 50,
   },
   divider: {
     height: 2,
