@@ -85,6 +85,7 @@ const LoginScreen = ({navigation}) => {
         </View>
         <CheckBox
           containerStyle={{marginLeft: 50,}}
+          disabled
           title="จดจำรหัสผ่านของฉัน"
           checked={checked}
           onPress={toggleCheckbox}
