@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {Button, Header, Icon} from '@rneui/base';
+import {Button, Header, Icon, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
@@ -37,7 +37,20 @@ const ListMedicine = ({navigation}) => {
       {/* TODO: เลือกวัน */}
       <Text>ListMedicine</Text>
       {/* TODO: แสดงช่วงเวลา */}
-      <View />
+      <View>
+        <View style={{flexDirection: 'row'}}>
+          <Text
+            onPress={() => {
+              console.log('Pressed!');
+            }}>
+            Hello
+          </Text>
+          <Text>Hello </Text>
+        </View>
+        <View>
+          <Text>Hello </Text>
+        </View>
+      </View>
     </View>
   );
 };
