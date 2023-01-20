@@ -5,28 +5,85 @@ import AddMedicine from '../screens/managemMdicine/AddMedicine';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Qrcode from '../screens/QrCodeScreens/Qrcode';
 import ProfileScreen from '../screens/profile/ProfileScreen';
-
-import { Header } from '@rneui/themed';
+// file-medical
+import {Icon} from '@rneui/base';
+import ListMedicine from '../screens/managemMdicine/ListMedicine';
+import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
       screenOptions={{
-        headerTitleAlign: 'center',
-        headerBackground: () => {
-          return (
-            <LinearGradient
-              style={{height: '100%', width: '100%'}}
-              colors={['#00B2FF', '#26CFC5']}></LinearGradient>
-          );
-        },
-        headerTitleStyle:{color:'white',fontSize:16,fontWeight:'bold'},
-        headerShown:false,
-        // headerStyle:{borderRadius:5}
+        headerShown: false,
+        tabBarStyle: {height: 60},
+        tabBarLabelStyle: {fontSize: 15},
       }}>
-      <Tab.Screen name="Home" component={MainScreen} />
-      <Tab.Screen name="Qrcode" component={Qrcode} />
-      <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Tab.Screen
+        name="Home"
+        component={MainScreen}
+        options={{
+          tabBarIcon: () => {
+            return (
+              <Icon
+                name="medical-services"
+                type="fontAwesome5"
+                color="#35C5F5"
+                size={32}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="HisoryMdc"
+        component={HisoryMdc}
+        options={{
+          title: 'History',
+          tabBarIcon: () => {
+            return (
+              <Icon
+                name="history"
+                type="fontAwesome5"
+                color="#35C5F5"
+                size={32}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Qrcode"
+        component={Qrcode}
+        options={{
+          tabBarIcon: () => {
+            return (
+              <Icon
+                name="qr-code"
+                type="fontAwesome5"
+                color="#35C5F5"
+                size={32}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          title: 'Profile',
+          tabBarIcon: () => {
+            return (
+              <Icon
+                name="supervised-user-circle"
+                type="fontAwesome5"
+                color="#35C5F5"
+                size={32}
+              />
+            );
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -42,6 +99,11 @@ const ManagemMdicine = () => {
       <Stack.Screen
         name="AddMedicine"
         component={AddMedicine}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListMedicine"
+        component={ListMedicine}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
