@@ -1,0 +1,74 @@
+
+:root {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+button:hover {
+  cursor: pointer;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eae6e5;
+
+}
+
+  .heading {
+    margin: 3rem 0 5rem 0;
+  }
+  .title,
+  .sub-title {
+    font-size: 4rem;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #12130f;
+
+  }
+  .sub-title {
+    font-size: 1.5rem;
+    color: #deb465;
+  }
+
+  .user-input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+    .user-input input {
+      width: 80%;
+      max-width: 32rem;
+      font-family: "Nunito", sans-serif;
+      outline: none;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #deb465;
+      text-align: center;
+      padding: 0.7rem 1rem;
+      margin: 1rem 1rem 2rem 1rem;
+  }
+
+  .button {
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    background-color: #5b92799d;
+    color: black;
+    font-family: "Nunito", sans-serif;
+    font-size: 1.6rem;
+  }
+
+  

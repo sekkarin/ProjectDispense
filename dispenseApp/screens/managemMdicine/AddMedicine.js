@@ -8,8 +8,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import {Shadow} from 'react-native-shadow-2';
 
 // TODO:
-// [] add forn etc..
-// [] add image
+// [x] add forn etc..
+// [x] add image
 // FIXME:
 
 const AddMedicine = ({navigation}) => {
