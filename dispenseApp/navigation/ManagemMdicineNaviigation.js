@@ -9,6 +9,8 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 import {Icon} from '@rneui/base';
 import ListMedicine from '../screens/managemMdicine/ListMedicine';
 import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
+import EditUserLogin from '../screens/profile/EditUserLogin';
+import EditUser from '../screens/profile/EditUser';
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -104,6 +106,21 @@ const ManagemMdicine = () => {
       <Stack.Screen
         name="ListMedicine"
         component={ListMedicine}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditUser"
+        component={EditUser}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditUserLogin"
+        component={EditUserLogin}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
