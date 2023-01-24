@@ -79,6 +79,20 @@ const ListMedicine = ({navigation}) => {
           <View style={{alignItems: 'center'}}>
             <Icon name="partly-sunny" type="Ionicons" color="#fff" size={32} />
             <Text style={styles.textFormBox}>เช้า</Text>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Icon name="pills" type="fontisto" color="#fff" size={20} />
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  color: 'white',
+                }}>
+                {'  '}1 ตัวยา
+              </Text>
+            </View>
           </View>
         </LinearGradient>
         <LinearGradient

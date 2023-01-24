@@ -107,12 +107,7 @@ const EditUser = ({navigation}) => {
           style={{
             flexDirection: 'row',
           }}>
-          <Icon
-            name="pills"
-            type="fontisto"
-            color="#35C5F5"
-            size={32}
-          />
+          <Icon name="pills" type="fontisto" color="#35C5F5" size={32} />
           <Input placeholder="ประวัติแพ้ยา" />
         </View>
 
