@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ManagemMdicine from './ManagemMdicineNaviigation';
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
-  const [isLogin, setIslogin] = useState(false);
+  const [isLogin, setIslogin] = useState(true);
   return (
     <NavigationContainer>
       <Stack.Navigator>
