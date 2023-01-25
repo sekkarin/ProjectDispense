@@ -1,11 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Button, CheckBox, Header, Icon} from '@rneui/base';
+import {Button, Header, Icon} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {Shadow} from 'react-native-shadow-2';
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {
@@ -42,7 +40,7 @@ const ListMedicine = ({navigation}) => {
           end: {x: 2, y: 0},
         }}
         centerComponent={{
-          text: 'แจ้งเตือนการบริโภคยา',
+          text: 'รายการยา',
           style: styles.heading,
         }}
       />
@@ -72,55 +70,153 @@ const ListMedicine = ({navigation}) => {
       </View>
 
       {/* TODO: แสดงช่วงเวลา */}
-      <View style={styles.bodyFormBox}>
-        <LinearGradient
-          style={styles.LinearGratitleFormBox}
-          colors={['#06A8ED', '#09E9F8']}>
-          <View style={{alignItems: 'center'}}>
-            <Icon name="partly-sunny" type="Ionicons" color="#fff" size={32} />
-            <Text style={styles.textFormBox}>เช้า</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-              }}>
-              <Icon name="pills" type="fontisto" color="#fff" size={20} />
-              <Text
+      <View style={{marginTop: 20}}>
+        <View style={styles.bodyFormBox}>
+          <Button
+            buttonStyle={styles.LinearGratitleFormBox}
+            ViewComponent={LinearGradient}
+            containerStyle={{marginVertical: 20}}
+            linearGradientProps={{
+              colors: ['#07B5FC', '#7DE2DC'],
+              start: {x: 0, y: 0.5},
+              end: {x: 1, y: 0.5},
+            }}
+            onPress={() => {
+              navigation.navigate('ListMedicine2');
+            }}>
+            <View style={{alignItems: 'center'}}>
+              <Icon
+                name="cloud-sun"
+                type="FontAwesome5"
+                color="#fff"
+                size={40}
+              />
+              <Text style={styles.textFormBox}>เช้า</Text>
+              <View
                 style={{
-                  fontSize: 12,
-                  fontWeight: 'bold',
-                  color: 'white',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}>
-                {'  '}1 ตัวยา
-              </Text>
+                <Icon name="pills" type="fontisto" color="#fff" size={20} />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    color: 'white',
+                  }}>
+                  {'  '}1 ตัวยา
+                </Text>
+              </View>
             </View>
-          </View>
-        </LinearGradient>
-        <LinearGradient
-          style={styles.LinearGratitleFormBox}
-          colors={['#06A8ED', '#09E9F8']}>
-          <View style={{alignItems: 'center'}}>
-            <Icon name="sun" type="feather" color="#fff" size={32} />
-            <Text style={styles.textFormBox}>เช้า</Text>
-          </View>
-        </LinearGradient>
-      </View>
-      <View style={styles.bodyFormBox}>
-        <LinearGradient
-          style={styles.LinearGratitleFormBox}
-          colors={['#06A8ED', '#09E9F8']}>
-          <View style={{alignItems: 'center'}}>
-            <Icon name="partly-sunny" type="Ionicons" color="#fff" size={32} />
-            <Text style={styles.textFormBox}>เช้า</Text>
-          </View>
-        </LinearGradient>
-        <LinearGradient
-          style={styles.LinearGratitleFormBox}
-          colors={['#06A8ED', '#09E9F8']}>
-          <View style={{alignItems: 'center'}}>
-            <Icon name="sun" type="feather" color="#fff" size={32} />
-            <Text style={styles.textFormBox}>เช้า</Text>
-          </View>
-        </LinearGradient>
+          </Button>
+          <Button
+            buttonStyle={styles.LinearGratitleFormBox}
+            ViewComponent={LinearGradient}
+            containerStyle={{marginVertical: 20}}
+            linearGradientProps={{
+              colors: ['#07B5FC', '#7DE2DC'],
+              start: {x: 0, y: 0.5},
+              end: {x: 1, y: 0.5},
+            }}
+            onPress={() => {
+              navigation.navigate('ListMedicine2');
+            }}>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="sun" type="feather" color="#fff" size={40} />
+              <Text style={styles.textFormBox}>กลางวัน</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Icon name="pills" type="fontisto" color="#fff" size={20} />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    color: 'white',
+                  }}>
+                  {'  '}1 ตัวยา
+                </Text>
+              </View>
+            </View>
+          </Button>
+        </View>
+        <View style={styles.bodyFormBox}>
+          <Button
+            buttonStyle={styles.LinearGratitleFormBox}
+            ViewComponent={LinearGradient}
+            containerStyle={{marginVertical: 20}}
+            linearGradientProps={{
+              colors: ['#07B5FC', '#7DE2DC'],
+              start: {x: 0, y: 0.5},
+              end: {x: 1, y: 0.5},
+            }}
+            onPress={() => {
+              navigation.navigate('ListMedicine2');
+            }}>
+            <View style={{alignItems: 'center'}}>
+              <Icon
+                name="weather-sunset"
+                type="materialcommunityicons"
+                color="#fff"
+                size={40}
+              />
+              <Text style={styles.textFormBox}>เย็น</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Icon name="pills" type="fontisto" color="#fff" size={20} />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    color: 'white',
+                  }}>
+                  {'  '}1 ตัวยา
+                </Text>
+              </View>
+            </View>
+          </Button>
+          <Button
+            buttonStyle={styles.LinearGratitleFormBox}
+            ViewComponent={LinearGradient}
+            containerStyle={{marginVertical: 20}}
+            linearGradientProps={{
+              colors: ['#07B5FC', '#7DE2DC'],
+              start: {x: 0, y: 0.5},
+              end: {x: 1, y: 0.5},
+            }}
+            onPress={() => {
+              navigation.navigate('ListMedicine2');
+            }}>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="moon" type="eather" color="#fff" size={40} />
+              <Text style={styles.textFormBox}>ก่อนนอน</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Icon name="pills" type="fontisto" color="#fff" size={20} />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 'bold',
+                    color: 'white',
+                  }}>
+                  {'  '}1 ตัวยา
+                </Text>
+              </View>
+            </View>
+          </Button>
+        </View>
       </View>
 
       {show && (
@@ -175,14 +271,14 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   LinearGratitleFormBox: {
-    marginStart: 20,
-    marginEnd: 20,
-    marginVertical: 20,
     padding: 10,
-    width: '40%',
+    width: 150,
     height: 200,
+    justifyContent: 'center',
   },
   bodyFormBox: {
+    marginStart: 30,
+    marginEnd: 30,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
