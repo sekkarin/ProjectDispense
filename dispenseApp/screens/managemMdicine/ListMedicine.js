@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
