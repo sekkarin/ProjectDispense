@@ -1,14 +1,14 @@
 /* eslint-disable react/self-closing-comp */
-import {Image, StyleSheet, View, ScrollView} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
 import {Button, Header, Icon, Text} from '@rneui/base';
 
-const RegisterScreen = ({navigation}) => {
+const ChangPassword = ({navigation}) => {
   return (
-    <ScrollView>
+    <View>
       <Header
         // eslint-disable-next-line react-native/no-inline-styles
         containerStyle={{
@@ -33,8 +33,9 @@ const RegisterScreen = ({navigation}) => {
               // console.log('HelLo Leave');
               navigation.goBack();
             }}
+            // eslint-disable-next-line react-native/no-inline-styles
             buttonStyle={{
-              backgroundColor: 'rgba(52, 52, 52, 0.0)',
+              backgroundColor: 'transparent',
             }}>
             <Icon name="arrowleft" type="antdesign" color="white" size={32} />
           </Button>
@@ -52,101 +53,43 @@ const RegisterScreen = ({navigation}) => {
               <Text style={styles.headTitle}>แจ้งเตือนการบริโภคยา</Text>
             </View>
           </Shadow>
-
           {/* form ข้อมูลต่างๆ */}
           <View style={styles.bodyForm}>
             <LinearGradient
               style={styles.LinearGratitleForm}
               colors={['#06A8ED', '#09E9F8']}>
-              <Text style={styles.textTitleForm}>ข้อมูลส่วนตัว</Text>
+              <Text style={styles.textTitleForm}>กู้คืนบัญชีของคุณ</Text>
             </LinearGradient>
             <View style={styles.containerInput}>
+              <View>
+                <LinearGradient
+                  style={
+                    ([styles.LinearGratitleForm],
+                    {
+                      borderRadius: 8,
+                      paddingVertical: 15,
+                      paddingHorizontal: 45,
+                    })
+                  }
+                  colors={['#06A8ED', '#09E9F8']}>
+                  <Text style={styles.textTitleForm}>กู้คืนบัญชีของคุณ</Text>
+                </LinearGradient>
+              </View>
               <Input
-                placeholder="ชื่อ"
+                placeholder="กรอกพาสเวิร์ดใหม่"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
+                // eslint-disable-next-line react-native/no-inline-styles
                 inputContainerStyle={{
                   borderColor: '#76DFDE',
                   borderWidth: 2,
                   borderRadius: 5,
                 }}></Input>
               <Input
-                placeholder="นามสกุล"
+                placeholder="ยืนยันพาสเวิร์ดอีกครั้ง"
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-              <Input
-                placeholder="อายุ (ปี)"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-              <Input
-                placeholder="น้ำหนัก (กก.)"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-              <Input
-                placeholder="โรคประจำตัว"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-              <Input
-                placeholder="ประวัติแพ้ยา"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-            </View>
-          </View>
-          {/* form ข้อมูลส่วนที่ 2 */}
-          <View style={styles.bodyForm}>
-            <LinearGradient
-              style={styles.LinearGratitleForm}
-              colors={['#06A8ED', '#09E9F8']}>
-              <Text style={styles.textTitleForm}>ข้อมูลส่วนตัว</Text>
-            </LinearGradient>
-            <View style={styles.containerInput}>
-              <Input
-                placeholder="ชื่อผู้ใช้งาน"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-              <Input
-                placeholder="รหัสผ่าน"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={{
-                  borderColor: '#76DFDE',
-                  borderWidth: 2,
-                  borderRadius: 5,
-                }}></Input>
-              <Input
-                placeholder="เบอร์โทรศัพท์"
-                containerStyle={styles.containerStyle}
-                inputStyle={styles.inputStyle}
+                // eslint-disable-next-line react-native/no-inline-styles
                 inputContainerStyle={{
                   borderColor: '#76DFDE',
                   borderWidth: 2,
@@ -155,8 +98,9 @@ const RegisterScreen = ({navigation}) => {
             </View>
           </View>
           {/* ปุ่ม SUMIT */}
-          <View style={[styles.bodyBotton, {marginBottom: 20, marginTop: 20}]}>
+          <View style={[styles.bodyBotton, {marginTop: 20, marginBottom: 150}]}>
             <Button
+              title={'Next'}
               // eslint-disable-next-line react-native/no-inline-styles
               containerStyle={{
                 width: '50%',
@@ -170,43 +114,25 @@ const RegisterScreen = ({navigation}) => {
                 end: {x: 1, y: 0.5},
               }}
               onPress={() => {
-                navigation.navigate('ManagemMdicine', {screen: 'MainScreen'});
-              }}>
-              Register
-            </Button>
-            <View
-              // eslint-disable-next-line react-native/no-inline-styles
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: 10,
-              }}>
-              <Text style={{marginTop: 5, marginBottom: 20}}>
-                หากเป็นสมาชิกอยู่แล้ว{' '}
-                <Text
-                  style={{color: '#35C5F5'}}
-                  onPress={() => {
-                    navigation.navigate('LoginScreen');
-                  }}>
-                  เข้าสู่ระบบ
-                </Text>
-              </Text>
-            </View>
+                navigation.navigate('ChangPassword', {screen: 'ChangPassword'});
+              }}></Button>
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
-export default RegisterScreen;
+export default ChangPassword;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#DDDCDC',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   gardBody: {
+    // height: '90%',
     backgroundColor: 'white',
     margin: 30,
     // flex: 1,
@@ -233,7 +159,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   bodyForm: {
-    marginTop: 0,
+    marginTop: 20,
   },
   LinearGratitleForm: {
     padding: 10,

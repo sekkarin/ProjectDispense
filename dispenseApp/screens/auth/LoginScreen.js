@@ -1,13 +1,48 @@
 /* eslint-disable react/self-closing-comp */
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
-import {Input} from '@rneui/themed';
-import {Button} from '@rneui/base';
+import {Input, CheckBox} from '@rneui/themed';
+import {Button, Header, Icon, Text} from '@rneui/base';
+
 const LoginScreen = ({navigation}) => {
+  const [checked, setChecked] = React.useState(true);
+  const toggleCheckbox = () => setChecked(!checked);
   return (
     <View style={styles.container}>
+      <Header
+        // eslint-disable-next-line react-native/no-inline-styles
+        containerStyle={{
+          height: 90,
+          borderRadius: 18,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        ViewComponent={LinearGradient} // Don't forget this!
+        linearGradientProps={{
+          colors: ['#00B2FF', '#26CFC5'],
+          start: {x: 0, y: 2},
+          end: {x: 2, y: 0},
+        }}
+        centerComponent={{
+          text: 'แจ้งเตือนการบริโภคยา',
+          style: styles.heading,
+        }}
+        leftComponent={
+          <Button
+            onPress={() => {
+              // console.log('HelLo Leave');
+              navigation.goBack();
+            }}
+            // eslint-disable-next-line react-native/no-inline-styles
+            buttonStyle={{
+              backgroundColor: 'rgba(52, 52, 52, 0.0)',
+            }}>
+            <Icon name="arrowleft" type="antdesign" color="white" size={32} />
+          </Button>
+        }
+      />
       <View style={styles.gardBody}>
         {/* หัวข้อบนสุด */}
         <Shadow sides={['bottom']} corners={['bottom']} size={[0, 0]}>
@@ -31,6 +66,7 @@ const LoginScreen = ({navigation}) => {
               placeholder="อีเมล์"
               containerStyle={styles.containerStyle}
               inputStyle={styles.inputStyle}
+              // eslint-disable-next-line react-native/no-inline-styles
               inputContainerStyle={{
                 borderColor: '#76DFDE',
                 borderWidth: 2,
@@ -40,6 +76,7 @@ const LoginScreen = ({navigation}) => {
               placeholder="รหัสผ่าน"
               containerStyle={styles.containerStyle}
               inputStyle={styles.inputStyle}
+              // eslint-disable-next-line react-native/no-inline-styles
               inputContainerStyle={{
                 borderColor: '#76DFDE',
                 borderWidth: 2,
@@ -47,9 +84,22 @@ const LoginScreen = ({navigation}) => {
               }}></Input>
           </View>
         </View>
+        <CheckBox
+          // eslint-disable-next-line react-native/no-inline-styles
+          containerStyle={{marginLeft: 50}}
+          title="จดจำรหัสผ่านของฉัน"
+          checked={checked}
+          onPress={toggleCheckbox}
+          // Use ThemeProvider to make change for all checkbox
+          iconType="material-community"
+          checkedIcon="checkbox-marked"
+          uncheckedIcon="checkbox-blank-outline"
+          checkedColor="#35C5F5"
+        />
         {/* ปุ่ม SUMIT */}
         <View style={styles.bodyBotton}>
           <Button
+            // eslint-disable-next-line react-native/no-inline-styles
             containerStyle={{
               width: '50%',
               height: 40,
@@ -67,6 +117,24 @@ const LoginScreen = ({navigation}) => {
             Login
           </Button>
         </View>
+        <View
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 10,
+          }}>
+          <Text style={{marginTop: 5, marginBottom: 40}}>
+            ลืมรหัสผ่าน{' '}
+            <Text
+            style={{color:"#35C5F5"}}
+              onPress={() => {
+                navigation.navigate('LoginForgot');
+              }}>
+              คลิกที่นี่
+            </Text>
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -80,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#DDDCDC',
   },
   gardBody: {
-    height: '90%',
+    // height: '90%',
     backgroundColor: 'white',
     margin: 30,
     // flex: 1,
@@ -121,8 +189,8 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     width: '80%',
-    // height: 50,
-    // marginVertical: 10,
+    height: 50,
+    marginTop: 15,
   },
   inputStyle: {
     borderColor: 'black',
@@ -143,5 +211,11 @@ const styles = StyleSheet.create({
   bodyBotton: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  heading: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    marginTop: 14,
   },
 });
