@@ -8,14 +8,14 @@ import {Button, Header, Icon, Text} from '@rneui/base';
 import {logIn} from '../../util/auth';
 import {AuthContext} from '../../store/auth-context';
 import {useNavigation} from '@react-navigation/native';
-import {typeOf} from 'mathjs';
+
 const LoginScreen = ({navigation}) => {
   const [checked, setChecked] = React.useState(true);
   const toggleCheckbox = () => setChecked(!checked);
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const authCtx = useContext(AuthContext);
 
+  const authCtx = useContext(AuthContext);
   const navigator = useNavigation();
   const logInhander = async () => {
     const login = await logIn(username, password);

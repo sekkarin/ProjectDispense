@@ -1,6 +1,5 @@
 import {createContext, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import jwt_decode from 'jwt-decode';
 
 export const AuthContext = createContext({
   isAuthenticate: false,
@@ -14,7 +13,7 @@ function AuthContextProvider({children}) {
   const [userLogin, setUserLogin] = useState({});
 
   async function authenticate(Login) {
-    console.log('autn', Login.id);
+    // console.log('autn', Login.id);
     setLogIn(true);
     setUserLogin(Login);
     await AsyncStorage.setItem('IDUSER', Login.id);
