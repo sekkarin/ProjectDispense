@@ -31,9 +31,7 @@ const MainScreen = () => {
         rightComponent={
           <Button
             onPress={() => {
-              console.log('HelLo ', authCtx.isAuthenticate);
               authCtx.logout();
-              console.log('HelLo Leave', authCtx.isAuthenticate);
             }}
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',
