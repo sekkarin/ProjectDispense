@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const URL =
   'https://dispenseapp-default-rtdb.asia-southeast1.firebasedatabase.app/';
-export async function getUser() {
+export async function getUsers() {
   const respone = await axios.get(URL + 'User.json');
   const users = [];
   for (const key in respone.data) {
