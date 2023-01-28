@@ -1,14 +1,40 @@
 /* eslint-disable react/self-closing-comp */
-import {Image, StyleSheet, View} from 'react-native';
-import React from 'react';
+import {Alert, Image, StyleSheet, View} from 'react-native';
+import React, {useContext, useState} from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, CheckBox} from '@rneui/themed';
 import {Button, Header, Icon, Text} from '@rneui/base';
-
+import {logIn} from '../../util/auth';
+import {AuthContext} from '../../store/auth-context';
+import {useNavigation} from '@react-navigation/native';
+import {typeOf} from 'mathjs';
 const LoginScreen = ({navigation}) => {
   const [checked, setChecked] = React.useState(true);
   const toggleCheckbox = () => setChecked(!checked);
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const authCtx = useContext(AuthContext);
+
+  const navigator = useNavigation();
+  const logInhander = async () => {
+    const login = await logIn(username, password);
+    if (login) {
+      authCtx.authenticate(login);
+      navigator.goBack();
+    } else {
+      Alert.alert('เข้าสู่ระบบไม่สำเสร็จ');
+    }
+  };
+  const sumitHabdler = () => {
+    const _username = username.length > 4;
+    const _password = password.length > 0;
+    if (!_username || !_password) {
+      Alert.alert('ป้อนข้อมูลไม่ถูกต้อง ');
+      return;
+    }
+    logInhander();
+  };
   return (
     <View style={styles.container}>
       <Header
@@ -63,7 +89,8 @@ const LoginScreen = ({navigation}) => {
           </LinearGradient>
           <View style={styles.containerInput}>
             <Input
-              placeholder="อีเมล์"
+              placeholder="ชื่อผู้ใช้"
+              onChangeText={setUserName}
               containerStyle={styles.containerStyle}
               inputStyle={styles.inputStyle}
               // eslint-disable-next-line react-native/no-inline-styles
@@ -74,6 +101,7 @@ const LoginScreen = ({navigation}) => {
               }}></Input>
             <Input
               placeholder="รหัสผ่าน"
+              onChangeText={setPassword}
               containerStyle={styles.containerStyle}
               inputStyle={styles.inputStyle}
               // eslint-disable-next-line react-native/no-inline-styles
@@ -111,9 +139,7 @@ const LoginScreen = ({navigation}) => {
               start: {x: 0, y: 0.5},
               end: {x: 1, y: 0.5},
             }}
-            onPress={() => {
-              navigation.navigate('ManagemMdicine', {screen: 'MainScreen'});
-            }}>
+            onPress={sumitHabdler}>
             Login
           </Button>
         </View>
@@ -127,7 +153,7 @@ const LoginScreen = ({navigation}) => {
           <Text style={{marginTop: 5, marginBottom: 40}}>
             ลืมรหัสผ่าน{' '}
             <Text
-            style={{color:"#35C5F5"}}
+              style={{color: '#35C5F5'}}
               onPress={() => {
                 navigation.navigate('LoginForgot');
               }}>
