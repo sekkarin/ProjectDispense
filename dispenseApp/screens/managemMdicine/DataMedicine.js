@@ -24,14 +24,14 @@ const DataMedicine = ({navigation}) => {
           end: {x: 2, y: 0},
         }}
         centerComponent={{
-          text: 'พาราเซตามอล ( Parasetamal )',
+          text: 'พาราเซตามอล {\n} ( Parasetamal )',
           style: styles.heading,
         }}
         leftComponent={
           <Button
             onPress={() => {
               // console.log('HelLo Leave');
-              navigation.goBack();
+              navigation.goBack(); 
             }}
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',
@@ -125,7 +125,7 @@ export default DataMedicine;
 const styles = StyleSheet.create({
   heading: {
     fontSize: 18,
-    color: 'black',
+    color: '#00B2FF',
     fontWeight: 'bold',
     marginTop: 14,
   },

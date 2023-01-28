@@ -1,9 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View, ScrollView, Pressable} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon, Image, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Input} from '@rneui/themed';
 
 // TODO:
 // [] add forn etc..
