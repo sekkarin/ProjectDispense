@@ -2,10 +2,13 @@
 import React from 'react';
 import Navigation from './navigation/Navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AuthContextProvider from './store/auth-context';
 const App = () => {
   return (
     <SafeAreaProvider>
-      <Navigation />
+      <AuthContextProvider>
+        <Navigation />
+      </AuthContextProvider>
     </SafeAreaProvider>
   );
 };
