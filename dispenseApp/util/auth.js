@@ -9,8 +9,12 @@ const URL =
 // import Axios from 'react-native-axios/lib/core/Axios';
 
 // const API_KEY = 'AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o';
+<<<<<<< HEAD
 
 >>>>>>> 7617b5a (Revert "load login init start app")
+=======
+import axios from 'axios';
+>>>>>>> 4a53367 (..)
 export async function createUser(UserObject) {
   await fetch(URL + 'User.json', {
     method: 'POST',
