@@ -2,19 +2,9 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon, Image, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 6880d4c (Edit)
->>>>>>> a0bc776 (fix git)
-=======
->>>>>>> da62a46 (...)
 
 const HisoryMdc = () => {
   return (
-<<<<<<< HEAD
-<<<<<<< HEAD
     <ScrollView>
       <View>
         <Header
@@ -181,16 +171,6 @@ const HisoryMdc = () => {
         </View>
       </View>
     </ScrollView>
-=======
-    <View>
-      <Text>HisoryMdc</Text>
-    </View>
->>>>>>> a0bc776 (fix git)
-=======
-    <View>
-      <Text>HisoryMdc</Text>
-    </View>
->>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
   );
 };
 
