@@ -7,13 +7,9 @@ import ManagemMdicine from './ManagemMdicineNaviigation';
 import {AuthContext} from '../store/auth-context';
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
-<<<<<<< HEAD
   // const [isLogin, setIslogin] = useState(false);
   const authCtx = useContext(AuthContext);
 
-=======
-  const [isLogin, setIslogin] = useState(false);
->>>>>>> parent of 6880d4c (Edit)
   return (
     <NavigationContainer>
       <Stack.Navigator>
