@@ -11,15 +11,6 @@ const Navigation = () => {
   // const [isLogin, setIslogin] = useState(false);
   const authCtx = useContext(AuthContext);
 
-=======
-<<<<<<< HEAD
-  // const [isLogin, setIslogin] = useState(false);
-  const authCtx = useContext(AuthContext);
-
-=======
-  const [isLogin, setIslogin] = useState(false);
->>>>>>> parent of 6880d4c (Edit)
->>>>>>> a0bc776 (fix git)
   return (
     <NavigationContainer>
       <Stack.Navigator>

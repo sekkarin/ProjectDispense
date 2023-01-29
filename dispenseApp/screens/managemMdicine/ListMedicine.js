@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
+=======
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, Header, Icon} from '@rneui/base';
+import LinearGradient from 'react-native-linear-gradient';
+>>>>>>> parent of 6880d4c (Edit)
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {
@@ -34,10 +41,14 @@ const ListMedicine = ({navigation}) => {
           start: {x: 0, y: 2},
           end: {x: 2, y: 0},
         }}
+<<<<<<< HEAD
         centerComponent={{
           text: 'รายการยา',
           style: styles.heading,
         }}
+=======
+        centerComponent={{text: 'แจ้งเตือนการบริโภคยา', style: styles.heading}}
+>>>>>>> parent of 6880d4c (Edit)
       />
       {/* TODO: เลือกวัน */}
       <Text>ListMedicine</Text>
@@ -56,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 14,
   },
+<<<<<<< HEAD
   container: {
     margin: 5,
     padding: 10,
@@ -101,4 +113,6 @@ const styles = StyleSheet.create({
     color: 'white',
     marginVertical: 10,
   },
+=======
+>>>>>>> parent of 6880d4c (Edit)
 });
