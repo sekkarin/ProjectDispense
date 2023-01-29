@@ -1,16 +1,23 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import AuthNavigation from './AuthNavigation';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ManagemMdicine from './ManagemMdicineNaviigation';
+import {AuthContext} from '../store/auth-context';
 const Navigation = () => {
   const Stack = createNativeStackNavigator();
-  const [isLogin, setIslogin] = useState(true);
+<<<<<<< HEAD
+  // const [isLogin, setIslogin] = useState(false);
+  const authCtx = useContext(AuthContext);
+
+=======
+  const [isLogin, setIslogin] = useState(false);
+>>>>>>> parent of 6880d4c (Edit)
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {!isLogin ? (
+        {!authCtx.isAuthenticate ? (
           <Stack.Screen
             name="AuthNavigation"
             component={AuthNavigation}
