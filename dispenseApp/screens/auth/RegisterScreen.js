@@ -1,12 +1,70 @@
 /* eslint-disable react/self-closing-comp */
-import {Image, StyleSheet, View, ScrollView} from 'react-native';
-import React from 'react';
+import {Image, StyleSheet, View, ScrollView, Alert} from 'react-native';
+import React, {useState} from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
 import {Button, Header, Icon, Text} from '@rneui/base';
+import {createUser} from '../../util/auth';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
 
 const RegisterScreen = ({navigation}) => {
+  const [isFetch, setIsFecth] = useState(false);
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [tell, setTell] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [age, setAge] = useState('');
+  const [weight, setWeight] = useState('');
+  // โรคประจำตัว
+  const [congenitalDisease, setCongenitalDisease] = useState('');
+  // แพ้ยา
+  const [drugAllergy, setDrugAllergy] = useState('');
+
+  const sumitHabdler = () => {
+    const _username = username.length > 4;
+    const _password = password.length > 0;
+    const _tell = tell.length > 9;
+    const _firstName = firstName.length > 0;
+    const _lastName = lastName.length > 0;
+    const _age = age.length > 0;
+    const _weight = weight.length > 0;
+
+    if (
+      !_username ||
+      !_password ||
+      !_tell ||
+      !_firstName ||
+      !_lastName ||
+      !_age ||
+      !_weight
+    ) {
+      Alert.alert('ป้อนข้อมูลไม่ถูกต้อง ');
+      return;
+    }
+    sighupHandler();
+  };
+  const sighupHandler = () => {
+    setIsFecth(true);
+    createUser({
+      username: username,
+      password: password,
+      tell: tell,
+      firstName: firstName,
+      lastName: lastName,
+      age: age,
+      weight: weight,
+      congenitalDisease: congenitalDisease,
+      drugAllergy: drugAllergy,
+    });
+    setIsFecth(false);
+    Alert.alert('ลงทะเบียนสำเร็จ');
+    navigation.navigate('LoginScreen');
+  };
+  if (isFetch) {
+    return <LoadingOverlay></LoadingOverlay>;
+  }
   return (
     <ScrollView>
       <Header
@@ -63,6 +121,7 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.containerInput}>
               <Input
                 placeholder="ชื่อ"
+                onChangeText={setFirstName}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -72,6 +131,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="นามสกุล"
+                onChangeText={setLastName}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -81,6 +141,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="อายุ (ปี)"
+                onChangeText={setAge}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -90,6 +151,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="น้ำหนัก (กก.)"
+                onChangeText={setWeight}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -99,6 +161,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="โรคประจำตัว"
+                onChangeText={setCongenitalDisease}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -108,6 +171,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="ประวัติแพ้ยา"
+                onChangeText={setDrugAllergy}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -127,6 +191,7 @@ const RegisterScreen = ({navigation}) => {
             <View style={styles.containerInput}>
               <Input
                 placeholder="ชื่อผู้ใช้งาน"
+                onChangeText={setUserName}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -136,6 +201,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="รหัสผ่าน"
+                onChangeText={setPassword}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -145,6 +211,7 @@ const RegisterScreen = ({navigation}) => {
                 }}></Input>
               <Input
                 placeholder="เบอร์โทรศัพท์"
+                onChangeText={setTell}
                 containerStyle={styles.containerStyle}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={{
@@ -169,9 +236,7 @@ const RegisterScreen = ({navigation}) => {
                 start: {x: 0, y: 0.5},
                 end: {x: 1, y: 0.5},
               }}
-              onPress={() => {
-                navigation.navigate('ManagemMdicine', {screen: 'MainScreen'});
-              }}>
+              onPress={sumitHabdler}>
               Register
             </Button>
             <View
