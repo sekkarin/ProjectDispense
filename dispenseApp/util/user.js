@@ -20,6 +20,6 @@ export async function getUsers() {
     };
     users.push(userObject);
   }
+  return users;
   // console.log(respone._bodyBlob.data);
-  console.log(users);
 }
