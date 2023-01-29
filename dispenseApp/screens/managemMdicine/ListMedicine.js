@@ -1,11 +1,12 @@
 <<<<<<< HEAD
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Button, CheckBox, Header, Icon} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 import {StyleSheet, Text, View} from 'react-native';
@@ -16,6 +17,9 @@ import LinearGradient from 'react-native-linear-gradient';
 =======
 import {Shadow} from 'react-native-shadow-2';
 >>>>>>> f1b93e2 (Revert "edit chang button")
+=======
+import {Shadow} from 'react-native-shadow-2';
+>>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {

@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const HisoryMdc = () => {
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ScrollView>
       <View>
         <Header
@@ -185,6 +186,11 @@ const HisoryMdc = () => {
       <Text>HisoryMdc</Text>
     </View>
 >>>>>>> a0bc776 (fix git)
+=======
+    <View>
+      <Text>HisoryMdc</Text>
+    </View>
+>>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
   );
 };
 
