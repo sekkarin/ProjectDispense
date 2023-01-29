@@ -85,7 +85,7 @@ const ListMedicine2 = ({ navigation }) => {
         <Button
           buttonStyle={styles.ButtonFormBox}
           onPress={() => {
-            navigation.navigate('DataMedicine');
+            navigation.navigate('');
           }}>
           <View>
             <View Style={{ paddingEnd: 90 }}>

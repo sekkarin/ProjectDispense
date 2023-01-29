@@ -9,10 +9,12 @@ import ProfileScreen from '../screens/profile/ProfileScreen';
 import {Icon} from '@rneui/base';
 import ListMedicine from '../screens/managemMdicine/ListMedicine';
 import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
+<<<<<<< HEAD
 import EditUserLogin from '../screens/profile/EditUserLogin';
 import EditUser from '../screens/profile/EditUser';
 import ListMedicine2 from '../screens/managemMdicine/ListMedicine2';
-import DataMedicine from '../screens/managemMdicine/DataMedicine';
+=======
+>>>>>>> parent of 6880d4c (Edit)
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -110,6 +112,7 @@ const ManagemMdicine = () => {
         component={ListMedicine}
         options={{headerShown: false}}
       />
+<<<<<<< HEAD
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -130,11 +133,8 @@ const ManagemMdicine = () => {
         component={ListMedicine2}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="DataMedicine"
-        component={DataMedicine}
-        options={{headerShown: false}}
-      />
+=======
+>>>>>>> parent of 6880d4c (Edit)
     </Stack.Navigator>
   );
 };
