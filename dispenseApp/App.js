@@ -17,7 +17,7 @@ function Root() {
         setIsFecth(true);
         await AsyncStorage.getItem('IDUSER')
           .then(result => {
-            console.log(result);
+            // console.log(result);
             authCtx.authenticate(result == null ? '' : result);
             setIsFecth(false);
           })
