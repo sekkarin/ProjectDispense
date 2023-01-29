@@ -3,7 +3,7 @@
 // import Axios from 'react-native-axios/lib/core/Axios';
 
 // const API_KEY = 'AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o';
-
+import axios from 'axios';
 export async function createUser(UserObject) {
   await fetch(URL + 'User.json', {
     method: 'POST',
