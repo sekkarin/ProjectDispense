@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 // key = AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o
 
 // import Axios from 'react-native-axios/lib/core/Axios';
 
 // const API_KEY = 'AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o';
 import axios from 'axios';
+=======
+import axios from 'axios';
+
+const URL =
+  'https://dispenseapp-default-rtdb.asia-southeast1.firebasedatabase.app/';
+>>>>>>> a0bc776 (fix git)
 export async function createUser(UserObject) {
   await fetch(URL + 'User.json', {
     method: 'POST',

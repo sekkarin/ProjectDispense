@@ -7,9 +7,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {
-  const [date, setDate] = React.useState(new Date());
-  const [show, setShow] = React.useState(false);
-
   return (
     <View>
       <Header
@@ -19,14 +16,12 @@ const ListMedicine = ({navigation}) => {
               // console.log('HelLo Leave');
               navigation.goBack();
             }}
-            // eslint-disable-next-line react-native/no-inline-styles
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',
             }}>
             <Icon name="arrowleft" type="antdesign" color="white" size={32} />
           </Button>
         }
-        // eslint-disable-next-line react-native/no-inline-styles
         containerStyle={{
           height: 90,
           borderRadius: 18,
@@ -45,30 +40,7 @@ const ListMedicine = ({navigation}) => {
         }}
       />
       {/* TODO: เลือกวัน */}
-      <View style={styles.bodyForm}>
-        <LinearGradient
-          style={styles.LinearGratitleForm}
-          colors={['#06A8ED', '#09E9F8']}>
-          <View
-            style={{
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <Text style={styles.textTitleForm}>24/01/2023</Text>
-            <Icon
-              name="calendar"
-              size={35}
-              color="#fff"
-              type="antdesign"
-              onPress={() => {
-                setShow(state => !state);
-              }}
-            />
-          </View>
-        </LinearGradient>
-      </View>
-
+      <Text>ListMedicine</Text>
       {/* TODO: แสดงช่วงเวลา */}
       <View />
     </View>

@@ -85,7 +85,11 @@ const ListMedicine2 = ({ navigation }) => {
         <Button
           buttonStyle={styles.ButtonFormBox}
           onPress={() => {
+<<<<<<< HEAD
             navigation.navigate('DataMedicine');
+=======
+            navigation.navigate('');
+>>>>>>> a0bc776 (fix git)
           }}>
           <View>
             <View Style={{ paddingEnd: 90 }}>

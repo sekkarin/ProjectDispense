@@ -1,16 +1,17 @@
-/* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+<<<<<<< HEAD
 import {Button, Header, Icon, Image, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> parent of 6880d4c (Edit)
+>>>>>>> a0bc776 (fix git)
 
-// TODO:
-// [] add forn etc..
-// [] add image
-// FIXME:
-
-const HisoryMdc = ({navigation}) => {
+const HisoryMdc = () => {
   return (
+<<<<<<< HEAD
     <ScrollView>
       <View>
         <Header
@@ -192,49 +193,13 @@ const HisoryMdc = ({navigation}) => {
         </View>
       </View>
     </ScrollView>
+=======
+    <View>
+      <Text>HisoryMdc</Text>
+    </View>
+>>>>>>> a0bc776 (fix git)
   );
 };
 export default HisoryMdc;
 
-const styles = StyleSheet.create({
-  container: {
-    margin: 5,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#00B2FF',
-    borderRadius: 10,
-    marginVertical: 10,
-    // flex: 1
-  },
-  textlable: {
-    fontSize: 16,
-    color: '#00B2FF',
-    fontWeight: 'bold',
-  },
-  checkbox: {
-    backgroundColor: 'transparent',
-  },
-  textDate: {
-    opacity: 0.5,
-  },
-  heading: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    marginTop: 14,
-  },
-  textTitleForm: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  LinearGratitleForm: {
-    padding: 10,
-    width: '70%',
-    marginTop: 20,
-  },
-  bodyForm: {
-    marginTop: 0,
-    marginLeft: -10,
-  },
-});
+const styles = StyleSheet.create({});
