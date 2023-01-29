@@ -12,9 +12,12 @@ import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
 <<<<<<< HEAD
 import EditUserLogin from '../screens/profile/EditUserLogin';
 import EditUser from '../screens/profile/EditUser';
+<<<<<<< HEAD
 import ListMedicine2 from '../screens/managemMdicine/ListMedicine2';
 =======
 >>>>>>> parent of 6880d4c (Edit)
+=======
+>>>>>>> parent of eb2be9e (edit chang button)
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -128,6 +131,7 @@ const ManagemMdicine = () => {
         component={EditUserLogin}
         options={{headerShown: false}}
       />
+<<<<<<< HEAD
       <Stack.Screen
         name="ListMedicine2"
         component={ListMedicine2}
@@ -135,6 +139,8 @@ const ManagemMdicine = () => {
       />
 =======
 >>>>>>> parent of 6880d4c (Edit)
+=======
+>>>>>>> parent of eb2be9e (edit chang button)
     </Stack.Navigator>
   );
 };
