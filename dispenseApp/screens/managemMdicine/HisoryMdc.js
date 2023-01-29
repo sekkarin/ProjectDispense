@@ -45,25 +45,9 @@ const HisoryMdc = () => {
           }
         />
         {/* list */}
-        <View>
-          <Button
-            buttonStyle={{
-              borderRadius: 10,
-              marginHorizontal: 5,
-              borderWidth: 1,
-              borderColor: '#00B2FF',
-              marginTop: 10,
-            }}
-            onPress={() => {
-              navigation.navigate('ProfileScreen');
-            }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ['#fff', '#fff'],
-              start: {x: 0, y: 0.5},
-              end: {x: 1, y: 0.5},
-            }}>
-            <View style={{flexDirection: 'row', width: '70%', height: 200}}>
+        <View style={styles.container}>
+          <View style={{paddingVertical: 30, paddingHorizontal: 30}}>
+            <View style={{flexDirection: 'row', width: 100, height: 100}}>
               <Image
                 source={{
                   uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
@@ -72,13 +56,13 @@ const HisoryMdc = () => {
                   width: 100,
                   height: 100,
                   borderRadius: 50,
-                  marginVertical: 50,
+                  marginRight: 30,
                 }}
               />
               <View
                 style={{
                   flexDirection: 'column',
-                  marginLeft: 50,
+                  width: 200,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
@@ -91,28 +75,12 @@ const HisoryMdc = () => {
                 </Text>
               </View>
             </View>
-          </Button>
+          </View>
         </View>
         {/* list */}
-        <View>
-          <Button
-            buttonStyle={{
-              borderRadius: 10,
-              marginHorizontal: 5,
-              borderWidth: 1,
-              borderColor: '#00B2FF',
-              marginTop: 10,
-            }}
-            onPress={() => {
-              navigation.navigate('ProfileScreen');
-            }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ['#fff', '#fff'],
-              start: {x: 0, y: 0.5},
-              end: {x: 1, y: 0.5},
-            }}>
-            <View style={{flexDirection: 'row', width: '70%', height: 200}}>
+        <View style={styles.container}>
+          <View style={{paddingVertical: 30, paddingHorizontal: 30}}>
+            <View style={{flexDirection: 'row', width: 100, height: 100}}>
               <Image
                 source={{
                   uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
@@ -121,13 +89,13 @@ const HisoryMdc = () => {
                   width: 100,
                   height: 100,
                   borderRadius: 50,
-                  marginVertical: 50,
+                  marginRight: 30,
                 }}
               />
               <View
                 style={{
                   flexDirection: 'column',
-                  marginLeft: 50,
+                  width: 200,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
@@ -140,28 +108,12 @@ const HisoryMdc = () => {
                 </Text>
               </View>
             </View>
-          </Button>
+          </View>
         </View>
         {/* list */}
-        <View>
-          <Button
-            buttonStyle={{
-              borderRadius: 10,
-              marginHorizontal: 5,
-              borderWidth: 1,
-              borderColor: '#00B2FF',
-              marginTop: 10,
-            }}
-            onPress={() => {
-              navigation.navigate('ProfileScreen');
-            }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ['#fff', '#fff'],
-              start: {x: 0, y: 0.5},
-              end: {x: 1, y: 0.5},
-            }}>
-            <View style={{flexDirection: 'row', width: '70%', height: 200}}>
+        <View style={styles.container}>
+          <View style={{paddingVertical: 30, paddingHorizontal: 30}}>
+            <View style={{flexDirection: 'row', width: 100, height: 100}}>
               <Image
                 source={{
                   uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
@@ -170,13 +122,13 @@ const HisoryMdc = () => {
                   width: 100,
                   height: 100,
                   borderRadius: 50,
-                  marginVertical: 50,
+                  marginRight: 30,
                 }}
               />
               <View
                 style={{
                   flexDirection: 'column',
-                  marginLeft: 50,
+                  width: 200,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
@@ -189,7 +141,40 @@ const HisoryMdc = () => {
                 </Text>
               </View>
             </View>
-          </Button>
+          </View>
+        </View>
+        {/* list */}
+        <View style={styles.container}>
+          <View style={{paddingVertical: 30, paddingHorizontal: 30}}>
+            <View style={{flexDirection: 'row', width: 100, height: 100}}>
+              <Image
+                source={{
+                  uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
+                }}
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 50,
+                  marginRight: 30,
+                }}
+              />
+              <View
+                style={{
+                  flexDirection: 'column',
+                  width: 200,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{fontSize: 16, color: 'blue'}}>
+                  {' '}
+                  เมทฟอร์มิน {'\n'} ( Metformin )
+                </Text>
+                <Text style={{fontSize: 12}}>
+                  {'\n'} จำนวนที่ต้องรับ : 1 เม็ด{' '}
+                </Text>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -200,6 +185,7 @@ const HisoryMdc = () => {
 >>>>>>> a0bc776 (fix git)
   );
 };
+
 export default HisoryMdc;
 
 const styles = StyleSheet.create({});
