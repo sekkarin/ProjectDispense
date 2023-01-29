@@ -1,15 +1,19 @@
+<<<<<<< HEAD
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
+=======
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, Header, Icon} from '@rneui/base';
+import LinearGradient from 'react-native-linear-gradient';
+>>>>>>> parent of 6880d4c (Edit)
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {
-  const [date, setDate] = React.useState(new Date());
-  const [show, setShow] = React.useState(false);
-
   return (
     <View>
       <Header
@@ -19,14 +23,12 @@ const ListMedicine = ({navigation}) => {
               // console.log('HelLo Leave');
               navigation.goBack();
             }}
-            // eslint-disable-next-line react-native/no-inline-styles
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',
             }}>
             <Icon name="arrowleft" type="antdesign" color="white" size={32} />
           </Button>
         }
-        // eslint-disable-next-line react-native/no-inline-styles
         containerStyle={{
           height: 90,
           borderRadius: 18,
@@ -39,36 +41,17 @@ const ListMedicine = ({navigation}) => {
           start: {x: 0, y: 2},
           end: {x: 2, y: 0},
         }}
+<<<<<<< HEAD
         centerComponent={{
           text: 'รายการยา',
           style: styles.heading,
         }}
+=======
+        centerComponent={{text: 'แจ้งเตือนการบริโภคยา', style: styles.heading}}
+>>>>>>> parent of 6880d4c (Edit)
       />
       {/* TODO: เลือกวัน */}
-      <View style={styles.bodyForm}>
-        <LinearGradient
-          style={styles.LinearGratitleForm}
-          colors={['#06A8ED', '#09E9F8']}>
-          <View
-            style={{
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <Text style={styles.textTitleForm}>24/01/2023</Text>
-            <Icon
-              name="calendar"
-              size={35}
-              color="#fff"
-              type="antdesign"
-              onPress={() => {
-                setShow(state => !state);
-              }}
-            />
-          </View>
-        </LinearGradient>
-      </View>
-
+      <Text>ListMedicine</Text>
       {/* TODO: แสดงช่วงเวลา */}
       <View />
     </View>
@@ -84,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 14,
   },
+<<<<<<< HEAD
   container: {
     margin: 5,
     padding: 10,
@@ -129,4 +113,6 @@ const styles = StyleSheet.create({
     color: 'white',
     marginVertical: 10,
   },
+=======
+>>>>>>> parent of 6880d4c (Edit)
 });
