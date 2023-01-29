@@ -12,7 +12,6 @@ import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
 import EditUserLogin from '../screens/profile/EditUserLogin';
 import EditUser from '../screens/profile/EditUser';
 import ListMedicine2 from '../screens/managemMdicine/ListMedicine2';
-import DataMedicine from '../screens/managemMdicine/DataMedicine';
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -128,11 +127,6 @@ const ManagemMdicine = () => {
       <Stack.Screen
         name="ListMedicine2"
         component={ListMedicine2}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DataMedicine"
-        component={DataMedicine}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
