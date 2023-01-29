@@ -1,14 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View, Text} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 // import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from '@rneui/themed';
 import {Button, Header} from '@rneui/base';
+import {AuthContext} from '../../store/auth-context';
 
 const MainScreen = () => {
   const navigation = useNavigation();
+  const authCtx = useContext(AuthContext);
   return (
     <View>
       {/* Header Bar  */}
@@ -29,7 +31,7 @@ const MainScreen = () => {
         rightComponent={
           <Button
             onPress={() => {
-              console.log('HelLo Leave');
+              authCtx.logout();
             }}
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',

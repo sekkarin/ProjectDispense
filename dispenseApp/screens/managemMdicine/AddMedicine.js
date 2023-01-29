@@ -38,7 +38,7 @@ const AddMedicine = ({navigation}) => {
             end: {x: 2, y: 0},
           }}
           centerComponent={{
-            text: 'แจ้งเตือนการบริโภคยา',
+            text: 'เพิ่มยา',
             style: styles.heading,
           }}
           leftComponent={
