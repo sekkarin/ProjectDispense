@@ -10,6 +10,10 @@ import {Icon} from '@rneui/base';
 import ListMedicine from '../screens/managemMdicine/ListMedicine';
 import HisoryMdc from '../screens/managemMdicine/HisoryMdc';
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
 import EditUserLogin from '../screens/profile/EditUserLogin';
 import EditUser from '../screens/profile/EditUser';
 <<<<<<< HEAD
@@ -137,10 +141,19 @@ const ManagemMdicine = () => {
         component={ListMedicine2}
         options={{headerShown: false}}
       />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
 =======
 >>>>>>> parent of 6880d4c (Edit)
 =======
 >>>>>>> parent of eb2be9e (edit chang button)
+<<<<<<< HEAD
+>>>>>>> f1b93e2 (Revert "edit chang button")
+=======
+>>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
     </Stack.Navigator>
   );
 };

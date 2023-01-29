@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable react-native/no-inline-styles */
 <<<<<<< HEAD
 import {StyleSheet, View} from 'react-native';
@@ -12,8 +13,24 @@ import {Button, CheckBox, Header, Icon} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, Header, Icon} from '@rneui/base';
+import LinearGradient from 'react-native-linear-gradient';
+>>>>>>> parent of 6880d4c (Edit)
+=======
 import {Shadow} from 'react-native-shadow-2';
+<<<<<<< HEAD
 >>>>>>> 4a533677a20b590f1e41764e05a9f306fef95a98
+=======
+>>>>>>> f1b93e2 (Revert "edit chang button")
+=======
+import {Shadow} from 'react-native-shadow-2';
+>>>>>>> 246cc6749ac1b6f6e5b7d1303efea0a5e3ebece6
+>>>>>>> a2af4c80690fb9c24c1f439388ed2621840dbeef
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
 const ListMedicine = ({navigation}) => {
@@ -44,10 +61,14 @@ const ListMedicine = ({navigation}) => {
           start: {x: 0, y: 2},
           end: {x: 2, y: 0},
         }}
+<<<<<<< HEAD
         centerComponent={{
           text: 'แจ้งเตือนการบริโภคยา',
           style: styles.heading,
         }}
+=======
+        centerComponent={{text: 'แจ้งเตือนการบริโภคยา', style: styles.heading}}
+>>>>>>> parent of 6880d4c (Edit)
       />
       {/* TODO: เลือกวัน */}
       <Text>ListMedicine</Text>
@@ -128,6 +149,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 14,
   },
+<<<<<<< HEAD
   container: {
     margin: 5,
     padding: 10,
@@ -173,4 +195,6 @@ const styles = StyleSheet.create({
     color: 'white',
     marginVertical: 10,
   },
+=======
+>>>>>>> parent of 6880d4c (Edit)
 });
