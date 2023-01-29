@@ -8,8 +8,10 @@ import {Button, Header, Icon, Text} from '@rneui/base';
 import {logIn} from '../../util/auth';
 import {AuthContext} from '../../store/auth-context';
 import {useNavigation} from '@react-navigation/native';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
 
 const LoginScreen = ({navigation}) => {
+  const [isFetch, setIsFecth] = useState(false);
   const [checked, setChecked] = React.useState(true);
   const toggleCheckbox = () => setChecked(!checked);
   const [username, setUserName] = useState('');
@@ -18,9 +20,11 @@ const LoginScreen = ({navigation}) => {
   const authCtx = useContext(AuthContext);
   const navigator = useNavigation();
   const logInhander = async () => {
+    setIsFecth(true);
     const login = await logIn(username, password);
     if (login) {
-      authCtx.authenticate(login);
+      authCtx.authenticate(login.id);
+      setIsFecth(false);
       navigator.goBack();
     } else {
       Alert.alert('เข้าสู่ระบบไม่สำเสร็จ');
@@ -35,6 +39,9 @@ const LoginScreen = ({navigation}) => {
     }
     logInhander();
   };
+  if (isFetch) {
+    return <LoadingOverlay></LoadingOverlay>;
+  }
   return (
     <View style={styles.container}>
       <Header
