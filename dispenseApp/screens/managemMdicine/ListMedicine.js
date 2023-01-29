@@ -2,11 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-<<<<<<< HEAD
-import {Button, Header, Icon, Text} from '@rneui/base';
-=======
 import {Button, CheckBox, Header, Icon} from '@rneui/base';
->>>>>>> parent of eb2be9e (edit chang button)
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -62,9 +58,6 @@ const ListMedicine = ({navigation}) => {
       {/* TODO: เลือกวัน */}
       <Text>ListMedicine</Text>
       {/* TODO: แสดงช่วงเวลา */}
-<<<<<<< HEAD
-      <View />
-=======
       <View style={styles.bodyFormBox}>
         <LinearGradient
           style={styles.LinearGratitleFormBox}
@@ -128,7 +121,6 @@ const ListMedicine = ({navigation}) => {
           }}
         />
       )}
->>>>>>> parent of eb2be9e (edit chang button)
     </View>
   );
 };

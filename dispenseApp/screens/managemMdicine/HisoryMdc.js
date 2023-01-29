@@ -1,13 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-<<<<<<< HEAD
 import {Button, Header, Icon, Image, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 6880d4c (Edit)
 >>>>>>> a0bc776 (fix git)
+=======
+>>>>>>> da62a46 (...)
 
 const HisoryMdc = () => {
   return (
