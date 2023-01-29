@@ -1,9 +1,15 @@
 // key = AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o
 
 // import Axios from 'react-native-axios/lib/core/Axios';
+<<<<<<< HEAD
 
 // const API_KEY = 'AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o';
 import axios from 'axios';
+=======
+
+// const API_KEY = 'AIzaSyDM7gpl0aYik9VJi7xKvD0fbxny434Fe8o';
+
+>>>>>>> parent of 008352e (load login init start app)
 export async function createUser(UserObject) {
   await fetch(URL + 'User.json', {
     method: 'POST',
