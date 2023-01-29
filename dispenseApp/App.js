@@ -1,4 +1,5 @@
 // npm start -- --reset-cache
+<<<<<<< HEAD
 import React, {useContext, useEffect, useState} from 'react';
 import Navigation from './navigation/Navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -38,11 +39,21 @@ function Root() {
   }
   return <Navigation />;
 }
+=======
+import React from 'react';
+import Navigation from './navigation/Navigation';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AuthContextProvider from './store/auth-context';
+>>>>>>> 7617b5a (Revert "load login init start app")
 const App = () => {
   return (
     <SafeAreaProvider>
       <AuthContextProvider>
+<<<<<<< HEAD
         <Root />
+=======
+        <Navigation />
+>>>>>>> 7617b5a (Revert "load login init start app")
       </AuthContextProvider>
     </SafeAreaProvider>
   );
