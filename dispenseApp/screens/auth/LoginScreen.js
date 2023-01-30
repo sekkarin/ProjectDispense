@@ -1,5 +1,5 @@
 /* eslint-disable react/self-closing-comp */
-import {Alert, Image, StyleSheet, View} from 'react-native';
+import {Alert, Image, StyleSheet, View, useEffect} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {Shadow} from 'react-native-shadow-2'; //https://www.npmjs.com/package/react-native-shadow-2
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,13 +9,22 @@ import {logIn} from '../../util/auth';
 import {AuthContext} from '../../store/auth-context';
 import {useNavigation} from '@react-navigation/native';
 import LoadingOverlay from '../../components/UI/LoadingOverlay';
-
+// import PushNotification from 'react-native-push-notification';
 const LoginScreen = ({navigation}) => {
   const [isFetch, setIsFecth] = useState(false);
   const [checked, setChecked] = React.useState(true);
   const toggleCheckbox = () => setChecked(!checked);
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  // const createChannels = () => {
+  //   PushNotification.createChannel({
+  //     channelId: 'test-Channel',
+  //     channelName: 'Test-Channel',
+  //   });
+  // };
+  // useEffect(() => {
+  //   createChannels;
+  // }, []);
 
   const authCtx = useContext(AuthContext);
   const navigator = useNavigation();
@@ -23,6 +32,7 @@ const LoginScreen = ({navigation}) => {
     setIsFecth(true);
     const login = await logIn(username, password);
     if (login) {
+      console.log(login.id);
       authCtx.authenticate(login.id);
       setIsFecth(false);
       navigator.goBack();
