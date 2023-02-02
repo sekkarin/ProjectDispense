@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Button, Header, Icon, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,7 +15,7 @@ const EditUser = ({navigation}) => {
     <View>
       <Header
         containerStyle={{
-          height: 90,
+          height: 120,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',
@@ -143,7 +143,7 @@ const EditUser = ({navigation}) => {
                 end: {x: 1, y: 0.5},
               }}
               onPress={() => {
-                navigation.navigate('');
+                navigation.goBack();
               }}
             />
             <Button
@@ -161,7 +161,8 @@ const EditUser = ({navigation}) => {
                 end: {x: 1, y: 0.5},
               }}
               onPress={() => {
-                navigation.navigate('');
+                Alert.alert('อัพเดทข้อมูลสำเร็จ');
+                navigation.goBack();
               }}
             />
           </View>

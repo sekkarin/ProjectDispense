@@ -1,4 +1,7 @@
 {
     "java.configuration.updateBuildConfiguration": "disabled",
-    "editor.codeActionsOnSave": {"source.fixAll.eslint":true}
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
 }

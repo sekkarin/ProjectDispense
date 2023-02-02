@@ -11,7 +11,7 @@ export const AuthContext = createContext({
 
 function AuthContextProvider({children}) {
   const [isLogIn, setLogIn] = useState(false);
-  const [id, setID] = useState(false);
+  const [id, setID] = useState('');
 
   async function authenticate(ID) {
     setLogIn(true);
@@ -20,18 +20,16 @@ function AuthContextProvider({children}) {
   }
   function logout() {
     setLogIn(false);
+    setID('');
     // setUserLogin({});
     AsyncStorage.setItem('IDUSER', '');
-  }
-  async function USERID() {
-    return await AsyncStorage.getItem('IDUSER');
   }
 
   const value = {
     isAuthenticate: isLogIn,
     authenticate: authenticate,
     logout: logout,
-    USERID: USERID,
+    USERID: id,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

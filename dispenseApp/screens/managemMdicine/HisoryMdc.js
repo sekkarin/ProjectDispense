@@ -15,7 +15,7 @@ const HisoryMdc = ({navigation}) => {
       <View>
         <Header
           containerStyle={{
-            height: 90,
+            height: 110,
             borderRadius: 18,
             alignItems: 'center',
             justifyContent: 'center',

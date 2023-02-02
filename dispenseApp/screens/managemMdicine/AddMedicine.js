@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useContext} from 'react';
-import {Button, CheckBox, Header, Icon} from '@rneui/base';
+import {Button, CheckBox, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -26,6 +26,7 @@ const AddMedicine = ({navigation}) => {
   const [showEnd, setShowEnd] = React.useState(false);
   const [medName, setMedName] = React.useState('');
   const [medType, setMedType] = React.useState('');
+  const [image, setImage] = React.useState('');
   const [medRecDose, setMedRecDose] = React.useState('');
   const [medRecNotiTime, setMedRecNotiTime] = React.useState(0); // ช่วงเวลาที่ผู้ต้องรับยา
   const authCtx = useContext(AuthContext);
@@ -49,10 +50,10 @@ const AddMedicine = ({navigation}) => {
         _medRecNotiTime = 'เย็น';
         break;
       case 2:
-        _medRecNotiTime = 'ก่อนนอน';
+        _medRecNotiTime = 'กลางวัน';
         break;
       case 3:
-        _medRecNotiTime = 'กลางวัน';
+        _medRecNotiTime = 'ก่อนนอน';
         break;
     }
     setIsFecth(true);
@@ -69,16 +70,17 @@ const AddMedicine = ({navigation}) => {
       medRec_dose: medRecDose,
       user_id: authCtx.USERID,
       med_id: meddicine.data.name,
+      image_url: image,
     });
 
     setIsFecth(false);
     Alert.alert('เพิ่มข้อมูลสำเสร็จ');
-    navigation.goBack();
+    navigation.navigate('MainScreen');
   };
   if (isFetch) {
     return <LoadingOverlay />;
   }
-
+  // console.log(authCtx.USERID);
   return (
     <Shadow
       containerStyle={{backgroundColor: 'transparent'}}
@@ -86,7 +88,7 @@ const AddMedicine = ({navigation}) => {
       <View>
         <Header
           containerStyle={{
-            height: 90,
+            height: 120,
             borderRadius: 18,
             alignItems: 'center',
             justifyContent: 'center',
@@ -249,16 +251,21 @@ const AddMedicine = ({navigation}) => {
             </View>
           </View>
           {/* TODO: เพิ่มรูป */}
-          <View style={{width: '20%'}}>
-            <Button
-              title={'เพิ่มรูป'}
-              ViewComponent={LinearGradient}
-              containerStyle={{borderRadius: 20, marginVertical: 10}}
-              linearGradientProps={{
-                colors: ['#07B5FC', '#7DE2DC'],
-                start: {x: 0, y: 0.5},
-                end: {x: 1, y: 0.5},
-              }}
+          <View
+            style={{
+              width: '80%',
+              padding: 10,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+            }}>
+            <Input
+              containerStyle={{width: '50%'}}
+              placeholder="ลิงค์รูป"
+              onChangeText={setImage}
+            />
+            <Image
+              source={{uri: image ? image : null}}
+              style={{width: 80, height: 80, marginLeft: 10}}
             />
           </View>
           {/* TODO: บันทึกยา */}
