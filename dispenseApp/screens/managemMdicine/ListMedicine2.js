@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Alert, FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Button, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -7,14 +7,18 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import EmptyData from '../../components/UI/EmptyData';
 import {getMedicineById, getTimeMedicine} from '../../util/medicine';
 import moment from 'moment';
-// TODO: เลือกวัน
-// [] เแสดงช่วงเวลา
+import PushNotification from 'react-native-push-notification';
+// TODO: แจ้งเตือน ตามระยะเวลา
+
 const ListMedicine2 = ({navigation, route}) => {
   const data = route.params.data;
   const currDate = route.params.currDate;
   console.log('currDate', currDate);
   const [medicines, setMedicines] = useState([]);
   const [showTime, setShowTime] = useState(false);
+  const [date, setDate] = useState(
+    new Date(moment(currDate, 'DD/MM/YYYY').format()),
+  );
   useEffect(() => {
     async function getMed() {
       data.forEach(async element => {
@@ -72,7 +76,7 @@ const ListMedicine2 = ({navigation, route}) => {
               flexDirection: 'row',
               alignItems: 'center',
             }}>
-            <Text style={styles.textTitleForm}>เช้า</Text>
+            <Text style={styles.textTitleForm}>ตั้งเวลาแจ้งเตือน</Text>
             <Icon
               name="timer"
               size={35}
@@ -102,9 +106,22 @@ const ListMedicine2 = ({navigation, route}) => {
               <Pressable
                 style={{alignItems: 'center', marginVertical: 10}}
                 onPress={() => {
-                  navigation.navigate('DataMedicine');
+                  navigation.navigate('DataMedicine', {
+                    med_id: item.medRec.med_id,
+                    medRec_getTime: item.medRec.medRec_getTime,
+                    medRec_id: item.medRec.medRec_id,
+                  });
                 }}>
-                <View style={styles.gardContainer}>
+                <View
+                  style={[
+                    styles.gardContainer,
+                    {
+                      backgroundColor:
+                        item.medRec.medRec_getTime !== ''
+                          ? '#CBFFD0'
+                          : '#F9B9B9',
+                    },
+                  ]}>
                   <View
                     style={{
                       flexDirection: 'row',
@@ -124,9 +141,12 @@ const ListMedicine2 = ({navigation, route}) => {
                     />
                     {/* test dict */}
                     <View
-                      style={{flexDirection: 'column', marginHorizontal: 50}}>
+                      style={{
+                        flexDirection: 'column',
+                        marginHorizontal: 50,
+                      }}>
                       <Text style={styles.title}>{item.med.Med_name}</Text>
-                      <Text>
+                      <Text style={{overflow: 'hidden'}}>
                         จำนวนที่ต้องรับ : {item.medRec.medRec_dose} เม็ด
                       </Text>
                     </View>
@@ -136,13 +156,18 @@ const ListMedicine2 = ({navigation, route}) => {
                     style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
                     <Button
                       title={'รับยา'}
+                      disabled={
+                        item.medRec.medRec_getTime !== '' ? true : false
+                      }
                       color="success"
                       containerStyle={{width: 80}}
                       buttonStyle={{height: 40, borderRadius: 5, marginTop: 10}}
-                      onPress={() => {
-                        getTimeMedicine(item.medRec_id, {
-                          medRec_getTime: moment(Date, 'YYYY/MM/DD').format(),
+                      onPress={async () => {
+                        await getTimeMedicine(item.medRec.medRec_id, {
+                          medRec_getTime: new Date(Date.now()),
                         });
+                        Alert.alert('รับยาเรียบร้อยแล้ว');
+                        navigation.goBack();
                       }}
                     />
                     <Button
@@ -168,11 +193,27 @@ const ListMedicine2 = ({navigation, route}) => {
       )}
       {showTime && (
         <DateTimePicker
-          value={new Date(Date.now())}
+          value={date}
           mode="time"
-          display="clock"
-          onChange={() => {
+          is24Hour={true}
+          display="spinner"
+          onChange={_date => {
             setShowTime(false);
+            PushNotification.localNotificationSchedule({
+              channelId: 'idtest',
+              message: 'My Notification Message', // (required)
+              date: new Date(_date.nativeEvent.timestamp), // in 60 secs
+              actions: ['ReplyInput'],
+              reply_placeholder_text: 'Write your response...', // (required)
+              reply_button_text: 'Reply',
+              playSound: true, // (optional) default: true
+              soundName: 'default',
+              color: 'red', // (optional) default: system default
+              vibrate: true, // (optional) default: true
+              vibration: 1000, // vibration length in milliseconds, ignored if vibrate=false, default: 1000// (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+              // ignoreInForeground: true,
+            });
+            Alert.alert('ตั้งเวลาเรียบร้อย');
           }}
         />
       )}
@@ -187,11 +228,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#00B2FF',
     fontWeight: 'bold',
+    overflow: 'hidden',
   },
   gardContainer: {
     width: '85%',
     height: 160,
-    backgroundColor: '#F9B9B9',
+
     borderRadius: 5,
   },
   heading: {

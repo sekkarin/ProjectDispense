@@ -9,13 +9,22 @@ export async function createMedicine(MedicineObject) {
 export async function createMedRecord(MedRecordObject) {
   return await axios.post(URL + 'MedRecord.json', MedRecordObject);
 }
+export async function upDateMedRecord(medRec_id, MedRecordObject) {
+  await axios.patch(URL + 'MedRecord/' + medRec_id + '.json', MedRecordObject);
+}
+export async function upDateMedicine(med_id, MedRecordObject) {
+  return await axios.patch(
+    URL + 'Medicine/' + med_id + '.json',
+    MedRecordObject,
+  );
+}
 export async function getMedicineById(id) {
   return await axios.get(URL + 'Medicine/' + id + '.json');
 }
 export async function getTimeMedicine(id, MedicineObject) {
-  return await axios.put(URL + 'MedRecord' + id + '.json', MedicineObject);
+  // console.log(id);
+  return await axios.patch(URL + 'MedRecord/' + id + '.json', MedicineObject);
 }
-
 export async function getMedRecord() {
   return await axios.get(URL + 'MedRecord.json');
 }

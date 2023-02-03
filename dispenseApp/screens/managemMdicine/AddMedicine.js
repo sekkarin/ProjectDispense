@@ -71,6 +71,7 @@ const AddMedicine = ({navigation}) => {
       user_id: authCtx.USERID,
       med_id: meddicine.data.name,
       image_url: image,
+      medRec_getTime: '',
     });
 
     setIsFecth(false);
