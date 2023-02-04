@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/self-closing-comp */
 import {Image, StyleSheet, View, ScrollView, Alert} from 'react-native';
 import React, {useState} from 'react';
@@ -91,6 +92,7 @@ const RegisterScreen = ({navigation}) => {
               // console.log('HelLo Leave');
               navigation.goBack();
             }}
+            // eslint-disable-next-line react-native/no-inline-styles
             buttonStyle={{
               backgroundColor: 'rgba(52, 52, 52, 0.0)',
             }}>

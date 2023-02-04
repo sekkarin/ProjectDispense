@@ -52,12 +52,57 @@ const EditUserLogin = ({navigation}) => {
         </View>
         {/* TODO: ระยะเวลา */}
         {/* ช่วงเวลา */}
-        <View>
-          <Input placeholder="ชื่อผู้ใช้งาน" />
-          <Input placeholder="รหัสผ่านเดิม" />
-          <Input placeholder="รหัสผ่านใหม่" />
-          <Input placeholder="เบอร์โทรศัพท์เดิม" />
-          <Input placeholder="เบอร์โทรศัพท์ใหม่" />
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          <Input
+            placeholder="ชื่อผู้ใช้งาน"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
+          <Input
+            placeholder="รหัสผ่านเดิม"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
+          <Input
+            placeholder="รหัสผ่านใหม่"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
+          <Input
+            placeholder="เบอร์โทรศัพท์เดิม"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
+          <Input
+            placeholder="เบอร์โทรศัพท์ใหม่"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
           <View
             style={{
               flexDirection: 'row',
@@ -159,5 +204,14 @@ const styles = StyleSheet.create({
   bodyForm: {
     marginTop: 0,
     marginLeft: -10,
+  },
+  inputStyle: {
+    borderColor: 'black',
+    padding: 10,
+  },
+  containerStyle: {
+    width: '90%',
+    height: 50,
+    marginTop: 15,
   },
 });

@@ -6,3 +6,4 @@ const URL =
 export async function addMedicine(MedicineObject) {
   await axios.post(URL + 'Medicine.json', MedicineObject);
 }
+

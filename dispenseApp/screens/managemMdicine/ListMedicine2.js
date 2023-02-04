@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { Button, Header, Icon, Image } from '@rneui/base';
+import {Button, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
 // TODO: เลือกวัน
 // [] เแสดงช่วงเวลา
-const ListMedicine2 = ({ navigation }) => {
+const ListMedicine2 = ({navigation}) => {
   return (
     <View>
       <Header
@@ -33,8 +33,8 @@ const ListMedicine2 = ({ navigation }) => {
         ViewComponent={LinearGradient} // Don't forget this!
         linearGradientProps={{
           colors: ['#00B2FF', '#26CFC5'],
-          start: { x: 0, y: 2 },
-          end: { x: 2, y: 0 },
+          start: {x: 0, y: 2},
+          end: {x: 2, y: 0},
         }}
         centerComponent={{
           text: 'รายการยา',
@@ -57,7 +57,7 @@ const ListMedicine2 = ({ navigation }) => {
         </LinearGradient>
       </View>
       <View style={styles.bodyForm}>
-        <View style={{ alignItems: 'center', flexDirection: 'row' }}>
+        <View style={{alignItems: 'center', flexDirection: 'row'}}>
           <Text
             style={{
               fontSize: 16,
@@ -68,7 +68,7 @@ const ListMedicine2 = ({ navigation }) => {
             เช้า เวลาที่ต้องรับยา :{' '}
           </Text>
           <LinearGradient
-            style={{ marginTop: 10, padding: 10, width: '20%', borderRadius: 10 }}
+            style={{marginTop: 10, padding: 10, width: '20%', borderRadius: 10}}
             colors={['#06A8ED', '#09E9F8']}>
             <View
               style={{
@@ -81,14 +81,14 @@ const ListMedicine2 = ({ navigation }) => {
           </LinearGradient>
         </View>
       </View>
-      <View style={{ justifyContent: 'flex-end', alignItems: 'flex-start' }}>
+      <View style={{justifyContent: 'flex-end', alignItems: 'flex-start'}}>
         <Button
           buttonStyle={styles.ButtonFormBox}
           onPress={() => {
             navigation.navigate('DataMedicine');
           }}>
           <View>
-            <View Style={{ paddingEnd: 90 }}>
+            <View Style={{paddingEnd: 90}}>
               <Image
                 source={{
                   uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',

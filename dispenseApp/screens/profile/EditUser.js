@@ -1,9 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
-import React from 'react';
-import {Button, Header, Icon, Text} from '@rneui/base';
+import {Alert, StyleSheet, View} from 'react-native';
+import React, {useContext, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
+import {Button, Header, Icon, Text} from '@rneui/base';
+import {AuthContext} from '../../store/auth-context';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
+import {editUser} from '../../util/editUser';
 
 // TODO:
 // [] add forn etc..
@@ -11,6 +14,34 @@ import {Input} from '@rneui/themed';
 // FIXME:
 
 const EditUser = ({navigation}) => {
+  const [isFetch, setIsFecth] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [age, setAge] = useState('');
+  const [weight, setWeight] = useState('');
+  // โรคประจำตัว
+  const [congenitalDisease, setCongenitalDisease] = useState('');
+  // แพ้ยา
+  const [drugAllergy, setDrugAllergy] = useState('');
+
+
+  const sighupHandler = () => {
+    setIsFecth(true);
+    editUser({
+      firstName: firstName,
+      lastName: lastName,
+      age: age,
+      weight: weight,
+      congenitalDisease: congenitalDisease,
+      drugAllergy: drugAllergy,
+    });
+    setIsFecth(false);
+    Alert.alert('แก้ไขสำเร็จ');
+    navigation.navigate('ProfileScreen');
+  };
+  if (isFetch) {
+    return <LoadingOverlay />;
+  }
   return (
     <View>
       <Header
@@ -63,8 +94,43 @@ const EditUser = ({navigation}) => {
             type="Ionicons"
             color="#35C5F5"
             size={32}
+            containerStyle={styles.iconStyle}
           />
-          <Input placeholder="ชื่อ - นามสกุล" />
+          <Input
+            placeholder="ชื่อ"
+            onChangeText={setFirstName}
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginTop: 10,
+          }}>
+          <Icon
+            name="person-outline"
+            type="Ionicons"
+            color="#35C5F5"
+            size={32}
+            containerStyle={styles.iconStyle}
+          />
+          <Input
+            placeholder="นามสกุล"
+            onChangeText={setLastName}
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
         </View>
         <View
           style={{
@@ -76,8 +142,19 @@ const EditUser = ({navigation}) => {
             type="MaterialIcons"
             color="#35C5F5"
             size={32}
+            containerStyle={styles.iconStyle}
           />
-          <Input placeholder="อายุ" />
+          <Input
+            placeholder="อายุ"
+            onChangeText={setAge}
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
         </View>
         <View
           style={{
@@ -88,8 +165,19 @@ const EditUser = ({navigation}) => {
             type="MaterialIcons"
             color="#35C5F5"
             size={32}
+            containerStyle={styles.iconStyle}
           />
-          <Input placeholder="น้ำหนัก" />
+          <Input
+            placeholder="น้ำหนัก"
+            onChangeText={setWeight}
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
         </View>
         <View
           style={{
@@ -100,15 +188,42 @@ const EditUser = ({navigation}) => {
             type="fontisto"
             color="#35C5F5"
             size={32}
+            containerStyle={styles.iconStyle}
           />
-          <Input placeholder="โรคประจำตัว" />
+          <Input
+            placeholder="โรคประจำตัว"
+            onChangeText={setCongenitalDisease}
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
         </View>
         <View
           style={{
             flexDirection: 'row',
           }}>
-          <Icon name="pills" type="fontisto" color="#35C5F5" size={32} />
-          <Input placeholder="ประวัติแพ้ยา" />
+          <Icon
+            name="pills"
+            type="fontisto"
+            color="#35C5F5"
+            size={32}
+            containerStyle={styles.iconStyle}
+          />
+          <Input
+            placeholder="ประวัติแพ้ยา"
+            onChangeText={setDrugAllergy}
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          />
         </View>
 
         <View>
@@ -143,7 +258,7 @@ const EditUser = ({navigation}) => {
                 end: {x: 1, y: 0.5},
               }}
               onPress={() => {
-                navigation.navigate('');
+                navigation.navigate('ProfileScreen');
               }}
             />
             <Button
@@ -160,9 +275,7 @@ const EditUser = ({navigation}) => {
                 start: {x: 0, y: 0.5},
                 end: {x: 1, y: 0.5},
               }}
-              onPress={() => {
-                navigation.navigate('');
-              }}
+              onPress={sighupHandler}
             />
           </View>
         </View>
@@ -213,5 +326,17 @@ const styles = StyleSheet.create({
   bodyForm: {
     marginTop: 0,
     marginLeft: -10,
+  },
+  inputStyle: {
+    borderColor: 'black',
+    padding: 10,
+  },
+  containerStyle: {
+    width: 320,
+    height: 50,
+    marginTop: 15,
+  },
+  iconStyle: {
+    marginTop: 20,
   },
 });
