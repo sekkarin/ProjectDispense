@@ -17,10 +17,16 @@ function Root() {
         setIsFecth(true);
         await AsyncStorage.getItem('IDUSER')
           .then(result => {
-            console.log(result);
+            // console.log(result);
             authCtx.authenticate(result == null ? '' : result);
+            if (!result) {
+              authCtx.logout();
+              setIsFecth(false);
+              return;
+            }
             setIsFecth(false);
           })
+          // eslint-disable-next-line handle-callback-err
           .catch(err => {
             const errormsg = 'เกิดข้อผิดพลาด...';
             // console.log('เพิ่ม TOKEN ไม่ได้', err);
