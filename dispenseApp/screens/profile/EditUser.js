@@ -23,16 +23,19 @@ const EditUser = ({navigation}) => {
   const [congenitalDisease, setCongenitalDisease] = useState('');
   // แพ้ยา
   const [drugAllergy, setDrugAllergy] = useState('');
+  const editUserCtx = useContext(AuthContext);
 
-  const sighupHandler = () => {
+  const sighupHandler = async () => {
     setIsFecth(true);
-    editUser({
+    console.log(editUserCtx.USERID, 'hello');
+    await editUser(editUserCtx.USERID, {
       firstName: firstName,
       lastName: lastName,
       age: age,
       weight: weight,
       congenitalDisease: congenitalDisease,
       drugAllergy: drugAllergy,
+      // id: editUserCtx.USERID,
     });
     setIsFecth(false);
     Alert.alert('แก้ไขสำเร็จ');
