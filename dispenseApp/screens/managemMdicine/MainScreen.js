@@ -16,7 +16,7 @@ const MainScreen = () => {
       {/* Header Bar  */}
       <Header
         containerStyle={{
-          height: 120,
+          height: 110,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',
@@ -111,7 +111,7 @@ const MainScreen = () => {
             navigation.navigate('ListMedicine');
           }}
         />
-        <Button
+        {/* <Button
           title={'ทดสอบการแจ้งตอน'}
           size="lg"
           titleStyle={{
@@ -161,7 +161,7 @@ const MainScreen = () => {
                 ignoreInForeground: true,
               });
           }}
-        />
+        /> */}
       </View>
     </View>
   );

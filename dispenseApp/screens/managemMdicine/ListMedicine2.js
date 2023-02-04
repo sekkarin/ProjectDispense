@@ -5,7 +5,11 @@ import {Button, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import EmptyData from '../../components/UI/EmptyData';
-import {getMedicineById, getTimeMedicine} from '../../util/medicine';
+import {
+  deleteMedicineAndMedRec,
+  getMedicineById,
+  getTimeMedicine,
+} from '../../util/medicine';
 import moment from 'moment';
 import PushNotification from 'react-native-push-notification';
 // TODO: แจ้งเตือน ตามระยะเวลา
@@ -101,7 +105,7 @@ const ListMedicine2 = ({navigation, route}) => {
             marginBottom: 10,
           }}
           renderItem={({item}) => {
-            console.log(item);
+            // console.log(item);
             return (
               <Pressable
                 style={{alignItems: 'center', marginVertical: 10}}
@@ -180,6 +184,14 @@ const ListMedicine2 = ({navigation, route}) => {
                         marginHorizontal: 10,
                         marginTop: 10,
                       }}
+                      onPress={async () => {
+                        await deleteMedicineAndMedRec(
+                          item.medRec.medRec_id,
+                          item.medRec.med_id,
+                        );
+                        Alert.alert('ลบสำเร็จ!!!');
+                        navigation.navigate('MainScreen');
+                      }}
                     />
                   </View>
                 </View>
@@ -201,11 +213,11 @@ const ListMedicine2 = ({navigation, route}) => {
             setShowTime(false);
             PushNotification.localNotificationSchedule({
               channelId: 'idtest',
-              message: 'My Notification Message', // (required)
+              message: `แจ้งเตือนกินยา ${medicines.med.Med_name}`, // (required)
               date: new Date(_date.nativeEvent.timestamp), // in 60 secs
-              actions: ['ReplyInput'],
-              reply_placeholder_text: 'Write your response...', // (required)
-              reply_button_text: 'Reply',
+              // actions: ['ReplyInput'],
+              // reply_placeholder_text: 'Write your response...', // (required)
+              // reply_button_text: 'Reply',
               playSound: true, // (optional) default: true
               soundName: 'default',
               color: 'red', // (optional) default: system default

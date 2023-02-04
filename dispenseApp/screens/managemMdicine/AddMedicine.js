@@ -274,7 +274,7 @@ const AddMedicine = ({navigation}) => {
             <Button
               title={'บันทึกข้อมูล'}
               ViewComponent={LinearGradient}
-              containerStyle={{borderRadius: 20, marginVertical: 20}}
+              containerStyle={{borderRadius: 20, marginVertical: 5}}
               linearGradientProps={{
                 colors: ['#07B5FC', '#7DE2DC'],
                 start: {x: 0, y: 0.5},

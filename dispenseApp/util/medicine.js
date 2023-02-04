@@ -18,6 +18,16 @@ export async function upDateMedicine(med_id, MedRecordObject) {
     MedRecordObject,
   );
 }
+export async function deleteMedicineAndMedRec(medRec_id, med_id) {
+  console.log('delete ', med_id, medRec_id);
+  await axios
+    .delete(URL + 'Medicine/' + med_id + '.json')
+    .then(res => {
+      console.log(res.statusText);
+    })
+    .catch(err => console.log(err));
+  await axios.delete(URL + 'MedRecord/' + medRec_id + '.json');
+}
 export async function getMedicineById(id) {
   return await axios.get(URL + 'Medicine/' + id + '.json');
 }
