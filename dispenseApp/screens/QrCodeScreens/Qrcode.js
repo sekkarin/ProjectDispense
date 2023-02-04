@@ -1,5 +1,6 @@
 import {Button} from '@rneui/base';
 import * as React from 'react';
+import {useEffect} from 'react';
 
 import {StyleSheet, Text, View} from 'react-native';
 import {useCameraDevices} from 'react-native-vision-camera';
@@ -9,6 +10,7 @@ import {useScanBarcodes, BarcodeFormat} from 'vision-camera-code-scanner';
 export default function Qrcode({navigation}) {
   const [hasPermission, setHasPermission] = React.useState(false);
   const [camera, setCmera] = React.useState(false);
+  // const [camera, setCmera] = React.useState(false);
   const [_device, setdevice] = React.useState(null);
   const devices = useCameraDevices();
 
@@ -34,6 +36,12 @@ export default function Qrcode({navigation}) {
       setHasPermission(status === 'authorized');
     })();
   }, []);
+
+  useEffect(() => {
+    if (barcodes && barcodes.length > 0) {
+      console.log(barcodes[0].displayValue);
+    }
+  }, [barcodes]);
 
   return (
     <View style={{height: '80%', width: '100%', flex: 1}}>
@@ -63,10 +71,10 @@ export default function Qrcode({navigation}) {
             frameProcessorFps={5}
           />
           {/* {barcodes.map((barcode, idx) => (
-          <Text key={idx} style={styles.barcodeTextURL}>
-            {barcode.displayValue}
-          </Text>
-        ))} */}
+            <Text key={idx} style={styles.barcodeTextURL}>
+              {barcode.displayValue}
+            </Text>
+          ))} */}
         </>
       )}
     </View>

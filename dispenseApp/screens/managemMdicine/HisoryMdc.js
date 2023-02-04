@@ -25,11 +25,12 @@ const HisoryMdc = ({navigation}) => {
       const respone = await getMedRecord();
       // console.log('respone', respone.data);
       const medreds = respone.data;
+      setMedicines([]);
       for (const key in medreds) {
         if (Object.hasOwnProperty.call(medreds, key)) {
           const element = medreds[key];
           const medRec_getTime = element.medRec_getTime;
-          console.log(element.medRec_getTime.length);
+          // console.log(element.medRec_getTime.length);
           if (element.user_id === user_id && medRec_getTime.length > 0) {
             // element.medRec_id = key;
             Object.assign(element, {medRec_id: key});
@@ -39,19 +40,19 @@ const HisoryMdc = ({navigation}) => {
               ...currdate,
               {med: res.data, medRec: element},
             ]);
-            // setMedicines(currdata => [...currdata, element]);
           }
         }
       }
-
       setIsFecth(false);
     }
-    getmed();
+    const focusHandler = navigation.addListener('focus', () => {
+      getmed();
+    });
+    return focusHandler;
   }, [authCtx.USERID, navigation]);
   if (isFetch) {
     return <LoadingOverlay />;
   }
-  // console.log(medicines);
   return (
     <View>
       <Header
@@ -92,7 +93,7 @@ const HisoryMdc = ({navigation}) => {
           style={{height: '80%', marginBottom: 5, marginTop: 5}}
           data={medicines}
           renderItem={({item}) => {
-            console.log(item);
+            // console.log(item);
             return (
               <View>
                 <Button
@@ -116,7 +117,10 @@ const HisoryMdc = ({navigation}) => {
                     style={{flexDirection: 'row', width: '70%', height: 200}}>
                     <Image
                       source={{
-                        uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
+                        uri:
+                          item.medRec.image_url === ''
+                            ? 'https://img.freepik.com/free-vector/isometric-gastroenterology-composition-with-view-medication-with-tubes-pills-illustration_1284-63536.jpg?w=2000'
+                            : item.medRec.image_url,
                       }}
                       style={{
                         width: 100,

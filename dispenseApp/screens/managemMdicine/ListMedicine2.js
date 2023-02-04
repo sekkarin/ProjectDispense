@@ -213,7 +213,7 @@ const ListMedicine2 = ({navigation, route}) => {
             setShowTime(false);
             PushNotification.localNotificationSchedule({
               channelId: 'idtest',
-              message: `แจ้งเตือนกินยา ${medicines.med.Med_name}`, // (required)
+              message: 'แจ้งเตือนกินยา', // (required)
               date: new Date(_date.nativeEvent.timestamp), // in 60 secs
               // actions: ['ReplyInput'],
               // reply_placeholder_text: 'Write your response...', // (required)

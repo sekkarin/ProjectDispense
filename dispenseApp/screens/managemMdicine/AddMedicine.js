@@ -14,7 +14,7 @@ import {AuthContext} from '../../store/auth-context';
 // [] add forn etc..
 // [] add image
 // FIXME:
-
+/** */
 const AddMedicine = ({navigation}) => {
   const [isFetch, setIsFecth] = React.useState(false);
   const [selectedIndex, setIndex] = React.useState(0);
