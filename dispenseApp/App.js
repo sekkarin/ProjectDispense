@@ -5,6 +5,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AuthContextProvider, {AuthContext} from './store/auth-context';
 import LoadingOverlay from './components/UI/LoadingOverlay';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Alert} from 'react-native';
 
 function Root() {
   const [isFetch, setIsFecth] = useState(false);
