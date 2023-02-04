@@ -24,7 +24,6 @@ const EditUser = ({navigation}) => {
   // แพ้ยา
   const [drugAllergy, setDrugAllergy] = useState('');
 
-
   const sighupHandler = () => {
     setIsFecth(true);
     editUser({
