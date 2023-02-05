@@ -14,7 +14,7 @@ const EditUserLogin = ({navigation}) => {
     <View>
       <Header
         containerStyle={{
-          height: 90,
+          height: 120,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',

@@ -1,37 +1,44 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useContext} from 'react';
 import {Button, CheckBox, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Input} from '@rneui/themed';
+import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Shadow} from 'react-native-shadow-2';
 import LoadingOverlay from '../../components/UI/LoadingOverlay';
-import {upDateMedicine, upDateMedRecord} from '../../util/medicine';
+import {createMedicine, createMedRecord} from '../../util/medicine';
 import {AuthContext} from '../../store/auth-context';
+import {useEffect} from 'react';
+import moment from 'moment';
 
 // TODO:
 // [] add forn etc..
 // [] add image
 // FIXME:
-
-const DateMedicine = ({navigation, route}) => {
-  const med_id = route.params.med_id;
-  const medRec_getTime = route.params.medRec_getTime;
-  const medRec_id = route.params.medRec_id;
-  console.log('med_id', med_id, 'medRec_id', medRec_id);
+/** */
+const AddmedicineQRCode = ({navigation, route}) => {
+  // console.log(route.params.medObjec);
+  const medObjec = route.params?.medObjec;
+  console.log(medObjec.medRec_startDate);
   const [isFetch, setIsFecth] = React.useState(false);
   const [selectedIndex, setIndex] = React.useState(0);
-  const [date, setDate] = React.useState(new Date());
-  const [medRecStartDate, setMedRecStartDate] = React.useState('-');
-  const [medRecEndDate, setMedRecEndDate] = React.useState('-');
+  const [checked, setChecked] = React.useState(true);
+  const [date, setDate] = React.useState(
+    new Date(moment(medObjec.medRec_startDate, 'YYYY/MM/DD').format()),
+  );
+  const [medRecStartDate, setMedRecStartDate] = React.useState(
+    moment(medObjec.medRec_startDate, 'YYYY/MM/DD').format(),
+  );
+  const [medRecEndDate, setMedRecEndDate] = React.useState(
+    moment(medObjec.medRec_endDate, 'YYYY/MM/DD').format(),
+  );
   const [showStart, setShowStart] = React.useState(false);
   const [showEnd, setShowEnd] = React.useState(false);
-  const [medName, setMedName] = React.useState('');
-  const [medType, setMedType] = React.useState('');
+  const [medName, setMedName] = React.useState(medObjec.Med_name);
+  const [medType, setMedType] = React.useState(medObjec.Med_type);
   const [image, setImage] = React.useState('');
-  const [medRecDose, setMedRecDose] = React.useState('');
+  const [medRecDose, setMedRecDose] = React.useState(medObjec.medRec_dose);
   const [medRecNotiTime, setMedRecNotiTime] = React.useState(0); // ช่วงเวลาที่ผู้ต้องรับยา
   const authCtx = useContext(AuthContext);
 
@@ -61,28 +68,51 @@ const DateMedicine = ({navigation, route}) => {
         break;
     }
     setIsFecth(true);
-    // console.log(med_id);
-    await upDateMedicine(med_id, {
+    const meddicine = await createMedicine({
       Med_name: medName || 'ไม่มีข้อมูล',
       Med_type: medType || 'ไม่มีข้อมูล',
     });
-    // console.log('meddicine', medRec_id);
-    await upDateMedRecord(medRec_id, {
+    // console.log(meddicine.data);
+    await createMedRecord({
       medRec_BefAft: _medRec_BefAft,
       medRecNotiTime: _medRecNotiTime,
       medRec_startDate: medRecStartDate,
       medRec_endDate: medRecEndDate,
       medRec_dose: medRecDose,
       user_id: authCtx.USERID,
-      med_id: med_id,
+      med_id: meddicine.data.name,
       image_url: image,
-      medRec_getTime: medRec_getTime,
+      medRec_getTime: '',
     });
 
     setIsFecth(false);
-    Alert.alert('อัพเดตข้อมูลสำเร็จ');
+    Alert.alert('เพิ่มข้อมูลสำเสร็จ');
     navigation.navigate('MainScreen');
   };
+  React.useEffect(() => {
+    switch (medObjec.medRec_BefAft) {
+      case 'ก่อนอาหาร':
+        setIndex(0);
+        break;
+      case 'หลังอาหาร':
+        setIndex(1);
+        break;
+    }
+    switch (medObjec.medRecNotiTime) {
+      case 'เช้า':
+        setMedRecNotiTime(0);
+        break;
+      case 'เย็น':
+        setMedRecNotiTime(1);
+        break;
+      case 'กลางวัน':
+        setMedRecNotiTime(2);
+        break;
+      case 'ก่อนนอน':
+        setMedRecNotiTime(3);
+        break;
+    }
+  }, []);
   if (isFetch) {
     return <LoadingOverlay />;
   }
@@ -106,7 +136,7 @@ const DateMedicine = ({navigation, route}) => {
             end: {x: 2, y: 0},
           }}
           centerComponent={{
-            text: 'แก้ใขข้อมูลยา',
+            text: 'เพิ่มยา',
             style: styles.heading,
           }}
           leftComponent={
@@ -126,8 +156,16 @@ const DateMedicine = ({navigation, route}) => {
           {/* TODO: ระยะเวลา */}
           {/* ช่วงเวลา */}
           <View>
-            <Input placeholder="ชื่อยา" onChangeText={setMedName} />
-            <Input placeholder="ประเภทยา" onChangeText={setMedType} />
+            <Input
+              placeholder="ชื่อยา"
+              value={medObjec?.Med_name !== '' ? medObjec.Med_name : undefined}
+              onChangeText={setMedName}
+            />
+            <Input
+              placeholder="ประเภทยา"
+              value={medObjec?.Med_name !== '' ? medObjec.Med_type : undefined}
+              onChangeText={setMedType}
+            />
             <View
               style={{
                 flexDirection: 'row',
@@ -222,6 +260,9 @@ const DateMedicine = ({navigation, route}) => {
               placeholder="จำนวนยาที่ได้รับต่อครั้ง"
               keyboardType="number-pad"
               onChangeText={setMedRecDose}
+              value={
+                medObjec?.medRec_dose !== '' ? medObjec.medRec_dose : undefined
+              }
             />
           </View>
           {/* TODO: วันที่รับยา */}
@@ -238,7 +279,9 @@ const DateMedicine = ({navigation, route}) => {
                   setShowStart(state => !state);
                 }}
               />
-              <Text style={styles.textDate}>{medRecStartDate}</Text>
+              <Text style={styles.textDate}>
+                {moment(medRecStartDate).format('DD/MM//YYYY')}
+              </Text>
             </View>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -253,7 +296,9 @@ const DateMedicine = ({navigation, route}) => {
                   setShowEnd(state => !state);
                 }}
               />
-              <Text style={styles.textDate}>{medRecEndDate}</Text>
+              <Text style={styles.textDate}>
+                {moment(medRecEndDate).format('DD/MM//YYYY')}
+              </Text>
             </View>
           </View>
           {/* TODO: เพิ่มรูป */}
@@ -279,7 +324,7 @@ const DateMedicine = ({navigation, route}) => {
             <Button
               title={'บันทึกข้อมูล'}
               ViewComponent={LinearGradient}
-              containerStyle={{borderRadius: 20, marginVertical: 20}}
+              containerStyle={{borderRadius: 20, marginVertical: 5}}
               linearGradientProps={{
                 colors: ['#07B5FC', '#7DE2DC'],
                 start: {x: 0, y: 0.5},
@@ -325,7 +370,7 @@ const DateMedicine = ({navigation, route}) => {
   );
 };
 
-export default DateMedicine;
+export default AddmedicineQRCode;
 
 const styles = StyleSheet.create({
   container: {

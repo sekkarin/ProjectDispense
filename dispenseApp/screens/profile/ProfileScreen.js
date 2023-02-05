@@ -12,38 +12,38 @@ import {Input} from '@rneui/themed';
 
 const ProfileScreen = ({navigation}) => {
   return (
-    <ScrollView>
-      <View>
-        <Header
-          containerStyle={{
-            height: 90,
-            borderRadius: 18,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          ViewComponent={LinearGradient} // Don't forget this!
-          linearGradientProps={{
-            colors: ['#00B2FF', '#26CFC5'],
-            start: {x: 0, y: 2},
-            end: {x: 2, y: 0},
-          }}
-          centerComponent={{
-            text: 'ข้อมูลส่วนตัว',
-            style: styles.heading,
-          }}
-          leftComponent={
-            <Button
-              onPress={() => {
-                // console.log('HelLo Leave');
-                navigation.goBack();
-              }}
-              buttonStyle={{
-                backgroundColor: 'rgba(52, 52, 52, 0.0)',
-              }}>
-              <Icon name="arrowleft" type="antdesign" color="white" size={32} />
-            </Button>
-          }
-        />
+    <View>
+      <Header
+        containerStyle={{
+          height: 120,
+          borderRadius: 18,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        ViewComponent={LinearGradient} // Don't forget this!
+        linearGradientProps={{
+          colors: ['#00B2FF', '#26CFC5'],
+          start: {x: 0, y: 2},
+          end: {x: 2, y: 0},
+        }}
+        centerComponent={{
+          text: 'ข้อมูลส่วนตัว',
+          style: styles.heading,
+        }}
+        leftComponent={
+          <Button
+            onPress={() => {
+              // console.log('HelLo Leave');
+              navigation.goBack();
+            }}
+            buttonStyle={{
+              backgroundColor: 'rgba(52, 52, 52, 0.0)',
+            }}>
+            <Icon name="arrowleft" type="antdesign" color="white" size={32} />
+          </Button>
+        }
+      />
+      <ScrollView style={{height: '80%'}}>
         <View style={styles.container}>
           <View style={styles.bodyForm}>
             <LinearGradient
@@ -193,8 +193,8 @@ const ProfileScreen = ({navigation}) => {
             />
           </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

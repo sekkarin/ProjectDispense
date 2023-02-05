@@ -1,24 +1,92 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {Button, CheckBox, Header, Icon} from '@rneui/base';
+import {StyleSheet, Text, View, Alert} from 'react-native';
+import React, {useContext} from 'react';
+import {Button, CheckBox, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input, ListItem} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Shadow} from 'react-native-shadow-2';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
+import {createMedicine, createMedRecord} from '../../util/medicine';
+import {AuthContext} from '../../store/auth-context';
+import moment from 'moment';
 
 // TODO:
 // [x] add forn etc..
 // [x] add image
 // FIXME:
-
-const AddMedicine = ({navigation}) => {
+/** */
+const AddMedicine = ({navigation, rout}) => {
+  const [isFetch, setIsFecth] = React.useState(false);
   const [selectedIndex, setIndex] = React.useState(0);
   const [checked, setChecked] = React.useState(true);
   const [date, setDate] = React.useState(new Date());
-  const [show, setShow] = React.useState(false);
+  const [medRecStartDate, setMedRecStartDate] = React.useState(
+    new Date(Date.now()),
+  );
+  const [medRecEndDate, setMedRecEndDate] = React.useState(
+    new Date(Date.now()),
+  );
+  const [showStart, setShowStart] = React.useState(false);
+  const [showEnd, setShowEnd] = React.useState(false);
+  const [medName, setMedName] = React.useState('');
+  const [medType, setMedType] = React.useState('');
+  const [image, setImage] = React.useState('');
+  const [medRecDose, setMedRecDose] = React.useState('');
+  const [medRecNotiTime, setMedRecNotiTime] = React.useState(0); // ช่วงเวลาที่ผู้ต้องรับยา
+  const authCtx = useContext(AuthContext);
 
-  const toggleCheckbox = () => setChecked(!checked);
+  const sumithander = async () => {
+    let _medRec_BefAft = '';
+    let _medRecNotiTime = '';
+    switch (selectedIndex) {
+      case 0:
+        _medRec_BefAft = 'ก่อนอาหาร';
+        break;
+      case 1:
+        _medRec_BefAft = 'หลังอาหาร';
+        break;
+    }
+    switch (medRecNotiTime) {
+      case 0:
+        _medRecNotiTime = 'เช้า';
+        break;
+      case 1:
+        _medRecNotiTime = 'เย็น';
+        break;
+      case 2:
+        _medRecNotiTime = 'กลางวัน';
+        break;
+      case 3:
+        _medRecNotiTime = 'ก่อนนอน';
+        break;
+    }
+    setIsFecth(true);
+    const meddicine = await createMedicine({
+      Med_name: medName || 'ไม่มีข้อมูล',
+      Med_type: medType || 'ไม่มีข้อมูล',
+    });
+    // console.log(meddicine.data);
+    await createMedRecord({
+      medRec_BefAft: _medRec_BefAft,
+      medRecNotiTime: _medRecNotiTime,
+      medRec_startDate: medRecStartDate,
+      medRec_endDate: medRecEndDate,
+      medRec_dose: medRecDose,
+      user_id: authCtx.USERID,
+      med_id: meddicine.data.name,
+      image_url: image,
+      medRec_getTime: '',
+    });
+
+    setIsFecth(false);
+    Alert.alert('เพิ่มข้อมูลสำเสร็จ');
+    navigation.navigate('MainScreen');
+  };
+  if (isFetch) {
+    return <LoadingOverlay />;
+  }
+  // console.log(authCtx.USERID);
   return (
     <Shadow
       containerStyle={{backgroundColor: 'transparent'}}
@@ -26,7 +94,7 @@ const AddMedicine = ({navigation}) => {
       <View>
         <Header
           containerStyle={{
-            height: 90,
+            height: 120,
             borderRadius: 18,
             alignItems: 'center',
             justifyContent: 'center',
@@ -58,8 +126,8 @@ const AddMedicine = ({navigation}) => {
           {/* TODO: ระยะเวลา */}
           {/* ช่วงเวลา */}
           <View>
-            <Input placeholder="ชื่อยา" />
-            <Input placeholder="ประเภทยา" />
+            <Input placeholder="ชื่อยา" onChangeText={setMedName} />
+            <Input placeholder="ประเภทยา" onChangeText={setMedType} />
             <View
               style={{
                 flexDirection: 'row',
@@ -98,8 +166,8 @@ const AddMedicine = ({navigation}) => {
                     marginHorizontal: 5,
                   }}>
                   <CheckBox
-                    checked={checked}
-                    onPress={toggleCheckbox}
+                    checked={medRecNotiTime === 0}
+                    onPress={() => setMedRecNotiTime(0)}
                     iconType="material-community"
                     checkedIcon="checkbox-marked"
                     uncheckedIcon="checkbox-blank-outline"
@@ -109,8 +177,8 @@ const AddMedicine = ({navigation}) => {
                     textStyle={styles.textlable}
                   />
                   <CheckBox
-                    checked={checked}
-                    onPress={toggleCheckbox}
+                    checked={medRecNotiTime === 1}
+                    onPress={() => setMedRecNotiTime(1)}
                     iconType="material-community"
                     checkedIcon="checkbox-marked"
                     uncheckedIcon="checkbox-blank-outline"
@@ -122,8 +190,8 @@ const AddMedicine = ({navigation}) => {
                 </View>
                 <View>
                   <CheckBox
-                    checked={checked}
-                    onPress={toggleCheckbox}
+                    checked={medRecNotiTime === 2}
+                    onPress={() => setMedRecNotiTime(2)}
                     iconType="material-community"
                     checkedIcon="checkbox-marked"
                     uncheckedIcon="checkbox-blank-outline"
@@ -133,8 +201,8 @@ const AddMedicine = ({navigation}) => {
                     textStyle={styles.textlable}
                   />
                   <CheckBox
-                    checked={checked}
-                    onPress={toggleCheckbox}
+                    checked={medRecNotiTime === 3}
+                    onPress={() => setMedRecNotiTime(3)}
                     iconType="material-community"
                     checkedIcon="checkbox-marked"
                     uncheckedIcon="checkbox-blank-outline"
@@ -153,6 +221,7 @@ const AddMedicine = ({navigation}) => {
             <Input
               placeholder="จำนวนยาที่ได้รับต่อครั้ง"
               keyboardType="number-pad"
+              onChangeText={setMedRecDose}
             />
           </View>
           {/* TODO: วันที่รับยา */}
@@ -166,10 +235,12 @@ const AddMedicine = ({navigation}) => {
                 color="#76DFDE"
                 type="antdesign"
                 onPress={() => {
-                  setShow(state => !state);
+                  setShowStart(state => !state);
                 }}
               />
-              <Text style={styles.textDate}>{date.toISOString()}</Text>
+              <Text style={styles.textDate}>
+                {moment(medRecStartDate).format('DD/MM//YYYY')}
+              </Text>
             </View>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -181,23 +252,30 @@ const AddMedicine = ({navigation}) => {
                 color="#76DFDE"
                 type="antdesign"
                 onPress={() => {
-                  setShow(state => !state);
+                  setShowEnd(state => !state);
                 }}
               />
-              <Text style={styles.textDate}>{date.toISOString()}</Text>
+              <Text style={styles.textDate}>
+                {moment(medRecEndDate).format('DD/MM//YYYY')}
+              </Text>
             </View>
           </View>
           {/* TODO: เพิ่มรูป */}
-          <View style={{width: '20%'}}>
-            <Button
-              title={'เพิ่มรูป'}
-              ViewComponent={LinearGradient}
-              containerStyle={{borderRadius: 20, marginVertical: 10}}
-              linearGradientProps={{
-                colors: ['#07B5FC', '#7DE2DC'],
-                start: {x: 0, y: 0.5},
-                end: {x: 1, y: 0.5},
-              }}
+          <View
+            style={{
+              width: '80%',
+              padding: 10,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+            }}>
+            <Input
+              containerStyle={{width: '50%'}}
+              placeholder="ลิงค์รูป"
+              onChangeText={setImage}
+            />
+            <Image
+              source={{uri: image ? image : null}}
+              style={{width: 80, height: 80, marginLeft: 10}}
             />
           </View>
           {/* TODO: บันทึกยา */}
@@ -205,28 +283,44 @@ const AddMedicine = ({navigation}) => {
             <Button
               title={'บันทึกข้อมูล'}
               ViewComponent={LinearGradient}
-              containerStyle={{borderRadius: 20, marginVertical: 20}}
+              containerStyle={{borderRadius: 20, marginVertical: 5}}
               linearGradientProps={{
                 colors: ['#07B5FC', '#7DE2DC'],
                 start: {x: 0, y: 0.5},
                 end: {x: 1, y: 0.5},
               }}
-              onPress={() => {
-                navigation.navigate('MainScreen');
-              }}
+              onPress={sumithander}
             />
           </View>
         </View>
-        {show && (
+        {showStart && (
           <DateTimePicker
             testID="dateTimePicker"
             display="default"
             value={date}
             mode={'date'}
             is24Hour={true}
-            onChange={date => {
-              console.log(date);
-              setShow(false);
+            onChange={_date => {
+              // console.log(date);
+              setShowStart(false);
+              setMedRecStartDate(
+                new Date(_date.nativeEvent.timestamp).toISOString(),
+              );
+            }}
+          />
+        )}
+        {showEnd && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            display="default"
+            value={date}
+            mode={'date'}
+            is24Hour={true}
+            onChange={_date => {
+              setShowEnd(false);
+              setMedRecEndDate(
+                new Date(_date.nativeEvent.timestamp).toISOString(),
+              );
             }}
           />
         )}

@@ -1,8 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, View, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Button, Header, Icon, Image, Text} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
+import {AuthContext} from '../../store/auth-context';
+import {getMedicineById, getMedRecord} from '../../util/medicine';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
+import EmptyData from '../../components/UI/EmptyData';
+import {FlatList} from 'react-native';
 
 // TODO:
 // [] add forn etc..
@@ -10,188 +15,145 @@ import LinearGradient from 'react-native-linear-gradient';
 // FIXME:
 
 const HisoryMdc = ({navigation}) => {
-  return (
-    <ScrollView>
-      <View>
-        <Header
-          containerStyle={{
-            height: 90,
-            borderRadius: 18,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          ViewComponent={LinearGradient} // Don't forget this!
-          linearGradientProps={{
-            colors: ['#00B2FF', '#26CFC5'],
-            start: {x: 0, y: 2},
-            end: {x: 2, y: 0},
-          }}
-          centerComponent={{
-            text: 'ประวัติบริหารยา',
-            style: styles.heading,
-          }}
-          leftComponent={
-            <Button
-              onPress={() => {
-                // console.log('HelLo Leave');
-                navigation.goBack();
-              }}
-              buttonStyle={{
-                backgroundColor: 'rgba(52, 52, 52, 0.0)',
-              }}>
-              <Icon name="arrowleft" type="antdesign" color="white" size={32} />
-            </Button>
+  const [isFetch, setIsFecth] = useState(false);
+  const [medicines, setMedicines] = React.useState([]);
+  const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    async function getmed() {
+      setIsFecth(true);
+      const user_id = authCtx.USERID;
+      const respone = await getMedRecord();
+      // console.log('respone', respone.data);
+      const medreds = respone.data;
+      setMedicines([]);
+      for (const key in medreds) {
+        if (Object.hasOwnProperty.call(medreds, key)) {
+          const element = medreds[key];
+          const medRec_getTime = element.medRec_getTime;
+          // console.log(element.medRec_getTime.length);
+          if (element.user_id === user_id && medRec_getTime.length > 0) {
+            // element.medRec_id = key;
+            Object.assign(element, {medRec_id: key});
+            // console.log(element);
+            const res = await getMedicineById(element.med_id);
+            setMedicines(currdate => [
+              ...currdate,
+              {med: res.data, medRec: element},
+            ]);
           }
+        }
+      }
+      setIsFecth(false);
+    }
+    const focusHandler = navigation.addListener('focus', () => {
+      getmed();
+    });
+    return focusHandler;
+  }, [authCtx.USERID, navigation]);
+  if (isFetch) {
+    return <LoadingOverlay />;
+  }
+  return (
+    <View>
+      <Header
+        containerStyle={{
+          height: 110,
+          borderRadius: 18,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        ViewComponent={LinearGradient} // Don't forget this!
+        linearGradientProps={{
+          colors: ['#00B2FF', '#26CFC5'],
+          start: {x: 0, y: 2},
+          end: {x: 2, y: 0},
+        }}
+        centerComponent={{
+          text: 'ประวัติบริหารยา',
+          style: styles.heading,
+        }}
+        leftComponent={
+          <Button
+            onPress={() => {
+              // console.log('HelLo Leave');
+              navigation.goBack();
+            }}
+            buttonStyle={{
+              backgroundColor: 'rgba(52, 52, 52, 0.0)',
+            }}>
+            <Icon name="arrowleft" type="antdesign" color="white" size={32} />
+          </Button>
+        }
+      />
+
+      {/* list */}
+      {medicines.length > 0 ? (
+        // <ScrollView style={{height: '83%', marginBottom: 5}}>
+        <FlatList
+          style={{height: '80%', marginBottom: 5, marginTop: 5}}
+          data={medicines}
+          renderItem={({item}) => {
+            // console.log(item);
+            return (
+              <View>
+                <Button
+                  buttonStyle={{
+                    borderRadius: 10,
+                    marginHorizontal: 5,
+                    borderWidth: 1,
+                    borderColor: '#00B2FF',
+                    marginTop: 10,
+                  }}
+                  // onPress={() => {
+                  //   navigation.navigate('ProfileScreen');
+                  // }}
+                  ViewComponent={LinearGradient}
+                  linearGradientProps={{
+                    colors: ['#fff', '#fff'],
+                    start: {x: 0, y: 0.5},
+                    end: {x: 1, y: 0.5},
+                  }}>
+                  <View
+                    style={{flexDirection: 'row', width: '70%', height: 200}}>
+                    <Image
+                      source={{
+                        uri:
+                          item.medRec.image_url === ''
+                            ? 'https://img.freepik.com/free-vector/isometric-gastroenterology-composition-with-view-medication-with-tubes-pills-illustration_1284-63536.jpg?w=2000'
+                            : item.medRec.image_url,
+                      }}
+                      style={{
+                        width: 100,
+                        height: 100,
+                        borderRadius: 50,
+                        marginVertical: 50,
+                      }}
+                    />
+                    <View
+                      style={{
+                        flexDirection: 'column',
+                        marginLeft: 50,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <Text style={{fontSize: 16, color: 'blue'}}>
+                        {item.med.Med_name}
+                      </Text>
+                      <Text style={{fontSize: 12}}>
+                        {'\n'} จำนวนที่ต้องรับ : {item.medRec.medRec_dose} เม็ด{' '}
+                      </Text>
+                    </View>
+                  </View>
+                </Button>
+              </View>
+            );
+          }}
         />
-        {/* list */}
-        <View>
-          <Button
-            buttonStyle={{
-              borderRadius: 10,
-              marginHorizontal: 5,
-              borderWidth: 1,
-              borderColor: '#00B2FF',
-              marginTop: 10,
-            }}
-            onPress={() => {
-              navigation.navigate('ProfileScreen');
-            }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ['#fff', '#fff'],
-              start: {x: 0, y: 0.5},
-              end: {x: 1, y: 0.5},
-            }}>
-            <View style={{flexDirection: 'row', width: '70%', height: 200}}>
-              <Image
-                source={{
-                  uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
-                }}
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 50,
-                  marginVertical: 50,
-                }}
-              />
-              <View
-                style={{
-                  flexDirection: 'column',
-                  marginLeft: 50,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{fontSize: 16, color: 'blue'}}>
-                  {' '}
-                  เมทฟอร์มิน {'\n'} ( Metformin )
-                </Text>
-                <Text style={{fontSize: 12}}>
-                  {'\n'} จำนวนที่ต้องรับ : 1 เม็ด{' '}
-                </Text>
-              </View>
-            </View>
-          </Button>
-        </View>
-        {/* list */}
-        <View>
-          <Button
-            buttonStyle={{
-              borderRadius: 10,
-              marginHorizontal: 5,
-              borderWidth: 1,
-              borderColor: '#00B2FF',
-              marginTop: 10,
-            }}
-            onPress={() => {
-              navigation.navigate('ProfileScreen');
-            }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ['#fff', '#fff'],
-              start: {x: 0, y: 0.5},
-              end: {x: 1, y: 0.5},
-            }}>
-            <View style={{flexDirection: 'row', width: '70%', height: 200}}>
-              <Image
-                source={{
-                  uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
-                }}
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 50,
-                  marginVertical: 50,
-                }}
-              />
-              <View
-                style={{
-                  flexDirection: 'column',
-                  marginLeft: 50,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{fontSize: 16, color: 'blue'}}>
-                  {' '}
-                  เมทฟอร์มิน {'\n'} ( Metformin )
-                </Text>
-                <Text style={{fontSize: 12}}>
-                  {'\n'} จำนวนที่ต้องรับ : 1 เม็ด{' '}
-                </Text>
-              </View>
-            </View>
-          </Button>
-        </View>
-        {/* list */}
-        <View>
-          <Button
-            buttonStyle={{
-              borderRadius: 10,
-              marginHorizontal: 5,
-              borderWidth: 1,
-              borderColor: '#00B2FF',
-              marginTop: 10,
-            }}
-            onPress={() => {
-              navigation.navigate('ProfileScreen');
-            }}
-            ViewComponent={LinearGradient}
-            linearGradientProps={{
-              colors: ['#fff', '#fff'],
-              start: {x: 0, y: 0.5},
-              end: {x: 1, y: 0.5},
-            }}>
-            <View style={{flexDirection: 'row', width: '70%', height: 200}}>
-              <Image
-                source={{
-                  uri: 'https://medthai.com/wp-content/uploads/2016/11/%E0%B8%8B%E0%B8%B5%E0%B8%A1%E0%B8%AD%E0%B8%A5.jpg',
-                }}
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 50,
-                  marginVertical: 50,
-                }}
-              />
-              <View
-                style={{
-                  flexDirection: 'column',
-                  marginLeft: 50,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{fontSize: 16, color: 'blue'}}>
-                  {' '}
-                  เมทฟอร์มิน {'\n'} ( Metformin )
-                </Text>
-                <Text style={{fontSize: 12}}>
-                  {'\n'} จำนวนที่ต้องรับ : 1 เม็ด{' '}
-                </Text>
-              </View>
-            </View>
-          </Button>
-        </View>
-      </View>
-    </ScrollView>
+      ) : (
+        // </ScrollView>
+        <EmptyData message={'ไม่มีรายการ'} />
+      )}
+    </View>
   );
 };
 export default HisoryMdc;
