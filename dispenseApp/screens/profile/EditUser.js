@@ -27,7 +27,7 @@ const EditUser = ({navigation}) => {
 
   const sighupHandler = async () => {
     setIsFecth(true);
-    console.log(editUserCtx.USERID, 'hello');
+    // console.log(editUserCtx.USERID, 'hello');
     await editUser(editUserCtx.USERID, {
       firstName: firstName,
       lastName: lastName,
@@ -48,7 +48,7 @@ const EditUser = ({navigation}) => {
     <View>
       <Header
         containerStyle={{
-          height: 90,
+          height: 120,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',

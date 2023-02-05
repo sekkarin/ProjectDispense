@@ -255,6 +255,28 @@ const ProfileScreen = ({navigation}) => {
                 flexDirection: 'row',
               }}>
               <Icon
+                name="key"
+                type="fontisto"
+                color="#35C5F5"
+                size={32}
+                containerStyle={styles.iconStyle}
+              />
+              <Input
+                placeholder="รหัสผ่าน"
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                inputContainerStyle={{
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Icon
                 name="phone"
                 type="Feather"
                 color="#35C5F5"
