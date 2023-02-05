@@ -25,3 +25,16 @@ export async function logIn(username, password) {
   }
   return false;
 }
+// export async function checkEmail(emailUser) {
+//   const respone = await axios.get(URL + 'User.json');
+//   for (const key in respone.data) {
+//     const _username = respone.data[key].email;
+//     // const _password = respone.data[key].password;
+
+//     if (_username === emailUser ) {
+//       // console.log('true login', username, _username, password, _password, key);
+//       return {username: _username, password: _password, id: key};
+//     }
+//   }
+//   return false;
+// }

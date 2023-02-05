@@ -71,7 +71,7 @@ const RegisterScreen = ({navigation}) => {
       <Header
         // eslint-disable-next-line react-native/no-inline-styles
         containerStyle={{
-          height: 90,
+          height: 110,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',

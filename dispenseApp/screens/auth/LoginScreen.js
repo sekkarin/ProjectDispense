@@ -39,6 +39,7 @@ const LoginScreen = ({navigation}) => {
       navigator.goBack();
     } else {
       Alert.alert('เข้าสู่ระบบไม่สำเสร็จ');
+      navigator.goBack();
     }
   };
   const sumitHabdler = () => {
@@ -58,7 +59,7 @@ const LoginScreen = ({navigation}) => {
       <Header
         // eslint-disable-next-line react-native/no-inline-styles
         containerStyle={{
-          height: 90,
+          height: 110,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',
@@ -130,7 +131,7 @@ const LoginScreen = ({navigation}) => {
               }}></Input>
           </View>
         </View>
-        <CheckBox
+        {/* <CheckBox
           // eslint-disable-next-line react-native/no-inline-styles
           containerStyle={{marginLeft: 50}}
           title="จดจำรหัสผ่านของฉัน"
@@ -141,7 +142,7 @@ const LoginScreen = ({navigation}) => {
           checkedIcon="checkbox-marked"
           uncheckedIcon="checkbox-blank-outline"
           checkedColor="#35C5F5"
-        />
+        /> */}
         {/* ปุ่ม SUMIT */}
         <View style={styles.bodyBotton}>
           <Button
@@ -168,7 +169,7 @@ const LoginScreen = ({navigation}) => {
             alignItems: 'center',
             marginTop: 10,
           }}>
-          <Text style={{marginTop: 5, marginBottom: 40}}>
+          {/* <Text style={{marginTop: 5, marginBottom: 40}}>
             ลืมรหัสผ่าน{' '}
             <Text
               style={{color: '#35C5F5'}}
@@ -177,7 +178,7 @@ const LoginScreen = ({navigation}) => {
               }}>
               คลิกที่นี่
             </Text>
-          </Text>
+          </Text> */}
         </View>
       </View>
     </View>
@@ -255,6 +256,7 @@ const styles = StyleSheet.create({
   bodyBotton: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginVertical: 20,
   },
   heading: {
     fontSize: 18,

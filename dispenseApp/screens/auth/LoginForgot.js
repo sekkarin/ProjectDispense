@@ -7,6 +7,7 @@ import {Input} from '@rneui/themed';
 import {Button, Header, Icon, Text} from '@rneui/base';
 
 const LoginForgot = ({navigation}) => {
+  const sumitHabdler = () => {};
   return (
     <View>
       <Header
