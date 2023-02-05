@@ -9,6 +9,7 @@ import {Shadow} from 'react-native-shadow-2';
 import LoadingOverlay from '../../components/UI/LoadingOverlay';
 import {createMedicine, createMedRecord} from '../../util/medicine';
 import {AuthContext} from '../../store/auth-context';
+import {useEffect} from 'react';
 import moment from 'moment';
 
 // TODO:
@@ -16,23 +17,28 @@ import moment from 'moment';
 // [] add image
 // FIXME:
 /** */
-const AddMedicine = ({navigation, rout}) => {
+const AddmedicineQRCode = ({navigation, route}) => {
+  // console.log(route.params.medObjec);
+  const medObjec = route.params?.medObjec;
+  console.log(medObjec.medRec_startDate);
   const [isFetch, setIsFecth] = React.useState(false);
   const [selectedIndex, setIndex] = React.useState(0);
   const [checked, setChecked] = React.useState(true);
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState(
+    new Date(moment(medObjec.medRec_startDate, 'YYYY/MM/DD').format()),
+  );
   const [medRecStartDate, setMedRecStartDate] = React.useState(
-    new Date(Date.now()),
+    moment(medObjec.medRec_startDate, 'YYYY/MM/DD').format(),
   );
   const [medRecEndDate, setMedRecEndDate] = React.useState(
-    new Date(Date.now()),
+    moment(medObjec.medRec_endDate, 'YYYY/MM/DD').format(),
   );
   const [showStart, setShowStart] = React.useState(false);
   const [showEnd, setShowEnd] = React.useState(false);
-  const [medName, setMedName] = React.useState('');
-  const [medType, setMedType] = React.useState('');
+  const [medName, setMedName] = React.useState(medObjec.Med_name);
+  const [medType, setMedType] = React.useState(medObjec.Med_type);
   const [image, setImage] = React.useState('');
-  const [medRecDose, setMedRecDose] = React.useState('');
+  const [medRecDose, setMedRecDose] = React.useState(medObjec.medRec_dose);
   const [medRecNotiTime, setMedRecNotiTime] = React.useState(0); // ช่วงเวลาที่ผู้ต้องรับยา
   const authCtx = useContext(AuthContext);
 
@@ -83,6 +89,30 @@ const AddMedicine = ({navigation, rout}) => {
     Alert.alert('เพิ่มข้อมูลสำเสร็จ');
     navigation.navigate('MainScreen');
   };
+  React.useEffect(() => {
+    switch (medObjec.medRec_BefAft) {
+      case 'ก่อนอาหาร':
+        setIndex(0);
+        break;
+      case 'หลังอาหาร':
+        setIndex(1);
+        break;
+    }
+    switch (medObjec.medRecNotiTime) {
+      case 'เช้า':
+        setMedRecNotiTime(0);
+        break;
+      case 'เย็น':
+        setMedRecNotiTime(1);
+        break;
+      case 'กลางวัน':
+        setMedRecNotiTime(2);
+        break;
+      case 'ก่อนนอน':
+        setMedRecNotiTime(3);
+        break;
+    }
+  }, []);
   if (isFetch) {
     return <LoadingOverlay />;
   }
@@ -126,8 +156,16 @@ const AddMedicine = ({navigation, rout}) => {
           {/* TODO: ระยะเวลา */}
           {/* ช่วงเวลา */}
           <View>
-            <Input placeholder="ชื่อยา" onChangeText={setMedName} />
-            <Input placeholder="ประเภทยา" onChangeText={setMedType} />
+            <Input
+              placeholder="ชื่อยา"
+              value={medObjec?.Med_name !== '' ? medObjec.Med_name : undefined}
+              onChangeText={setMedName}
+            />
+            <Input
+              placeholder="ประเภทยา"
+              value={medObjec?.Med_name !== '' ? medObjec.Med_type : undefined}
+              onChangeText={setMedType}
+            />
             <View
               style={{
                 flexDirection: 'row',
@@ -222,6 +260,9 @@ const AddMedicine = ({navigation, rout}) => {
               placeholder="จำนวนยาที่ได้รับต่อครั้ง"
               keyboardType="number-pad"
               onChangeText={setMedRecDose}
+              value={
+                medObjec?.medRec_dose !== '' ? medObjec.medRec_dose : undefined
+              }
             />
           </View>
           {/* TODO: วันที่รับยา */}
@@ -329,7 +370,7 @@ const AddMedicine = ({navigation, rout}) => {
   );
 };
 
-export default AddMedicine;
+export default AddmedicineQRCode;
 
 const styles = StyleSheet.create({
   container: {

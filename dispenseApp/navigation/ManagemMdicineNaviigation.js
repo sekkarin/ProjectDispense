@@ -13,6 +13,7 @@ import EditUserLogin from '../screens/profile/EditUserLogin';
 import EditUser from '../screens/profile/EditUser';
 import ListMedicine2 from '../screens/managemMdicine/ListMedicine2';
 import DataMedicine from '../screens/managemMdicine/DataMedicine';
+import AddmedicineQRCode from '../screens/QrCodeScreens/AddmedicineQRCode';
 const TapNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -103,6 +104,11 @@ const ManagemMdicine = () => {
       <Stack.Screen
         name="AddMedicine"
         component={AddMedicine}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="AddmedicineQRCode"
+        component={AddmedicineQRCode}
         options={{headerShown: false}}
       />
       <Stack.Screen

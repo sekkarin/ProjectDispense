@@ -1,4 +1,6 @@
 import {Button} from '@rneui/base';
+import {json} from 'express';
+import {typeOf} from 'mathjs';
 import * as React from 'react';
 import {useEffect} from 'react';
 
@@ -39,7 +41,30 @@ export default function Qrcode({navigation}) {
 
   useEffect(() => {
     if (barcodes && barcodes.length > 0) {
-      console.log(barcodes[0].displayValue);
+      // console.log(barcodes[0].displayValue);
+      try {
+        const dateQrcode = barcodes[0].displayValue;
+        // console.log(typeof dateQrcode, dateQrcode);
+        // const qrCodeJson = JSON.stringify(dateQrcode);
+        const qrCodeObject = JSON.parse(dateQrcode.replace(/^\s+|\s+$/g, ''));
+        // console.log(typeof qrCodeObject, qrCodeObject);
+        console.log(qrCodeObject);
+        if (
+          qrCodeObject.hasOwnProperty('Med_name') &&
+          qrCodeObject.hasOwnProperty('Med_type') &&
+          qrCodeObject.hasOwnProperty('medRecNotiTime') &&
+          qrCodeObject.hasOwnProperty('medRec_startDate') &&
+          qrCodeObject.hasOwnProperty('medRec_endDate')
+        ) {
+          console.log('pass');
+          navigation.navigate('AddmedicineQRCode', {medObjec: qrCodeObject});
+        } else {
+          console.log('not pass');
+        }
+      } catch (err) {
+        console.log(err, 'valivadate date');
+      }
+      // if
     }
   }, [barcodes]);
 
@@ -69,6 +94,7 @@ export default function Qrcode({navigation}) {
             isActive={true}
             frameProcessor={frameProcessor}
             frameProcessorFps={5}
+            // onPointerMoveCapture
           />
           {/* {barcodes.map((barcode, idx) => (
             <Text key={idx} style={styles.barcodeTextURL}>

@@ -1,18 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useContext} from 'react';
 import {Button, CheckBox, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Input, ListItem} from '@rneui/themed';
+import {Input} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Shadow} from 'react-native-shadow-2';
 import LoadingOverlay from '../../components/UI/LoadingOverlay';
-import {
-  createMedicine,
-  createMedRecord,
-  upDateMedicine,
-  upDateMedRecord,
-} from '../../util/medicine';
+import {upDateMedicine, upDateMedRecord} from '../../util/medicine';
 import {AuthContext} from '../../store/auth-context';
 
 // TODO:
@@ -27,7 +23,6 @@ const DateMedicine = ({navigation, route}) => {
   console.log('med_id', med_id, 'medRec_id', medRec_id);
   const [isFetch, setIsFecth] = React.useState(false);
   const [selectedIndex, setIndex] = React.useState(0);
-  const [checked, setChecked] = React.useState(true);
   const [date, setDate] = React.useState(new Date());
   const [medRecStartDate, setMedRecStartDate] = React.useState('-');
   const [medRecEndDate, setMedRecEndDate] = React.useState('-');
