@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/self-closing-comp */
 import {Alert, Image, StyleSheet, View, useEffect} from 'react-native';
 import React, {useContext, useState} from 'react';

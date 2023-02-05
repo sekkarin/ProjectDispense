@@ -1,15 +1,40 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, View} from 'react-native';
-import React from 'react';
-import {Button, Header, Icon, Text} from '@rneui/base';
+import {Alert, StyleSheet, View} from 'react-native';
+import React, {useContext, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Input} from '@rneui/themed';
+import {Button, Header, Icon, Text} from '@rneui/base';
+import {AuthContext} from '../../store/auth-context';
+import LoadingOverlay from '../../components/UI/LoadingOverlay';
+import {editUser} from '../../util/editUser';
 
 // TODO:
 // [] add forn etc..
 // [] add image
 // FIXME:
 const EditUserLogin = ({navigation}) => {
+  const [isFetch, setIsFecth] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [tell, setTell] = useState('');
+
+  const editUserCtx = useContext(AuthContext);
+
+  const sighupHandler = async () => {
+    setIsFecth(true);
+    // console.log(editUserCtx.USERID);
+    await editUser(editUserCtx.USERID, {
+      username: username,
+      password: password,
+      tell: tell,
+    });
+    setIsFecth(false);
+    Alert.alert('แก้ไขสำเร็จ');
+    navigation.navigate('ProfileScreen');
+  };
+  if (isFetch) {
+    return <LoadingOverlay />;
+  }
   return (
     <View>
       <Header
@@ -43,73 +68,121 @@ const EditUserLogin = ({navigation}) => {
         }
       />
       <View style={styles.container}>
-        <View style={styles.bodyForm}>
-          <LinearGradient
-            style={styles.LinearGratitleForm}
-            colors={['#06A8ED', '#09E9F8']}>
-            <Text style={styles.textTitleForm}>ข้อมูลเข้าสู่ระบบ</Text>
-          </LinearGradient>
-        </View>
-        {/* TODO: ระยะเวลา */}
-        {/* ช่วงเวลา */}
-        <View>
-          <Input placeholder="ชื่อผู้ใช้งาน" />
-          <Input placeholder="รหัสผ่านเดิม" />
-          <Input placeholder="รหัสผ่านใหม่" />
-          <Input placeholder="เบอร์โทรศัพท์เดิม" />
-          <Input placeholder="เบอร์โทรศัพท์ใหม่" />
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              alignItems: 'center',
+        <View style={styles.border}>
+          <View style={styles.bodyForm}>
+            <LinearGradient
+              style={styles.LinearGratitleForm}
+              colors={['#06A8ED', '#09E9F8']}>
+              <Text style={styles.textTitleForm}>ข้อมูลเข้าสู่ระบบ</Text>
+            </LinearGradient>
+          </View>
+          {/* TODO: ระยะเวลา */}
+          {/* ช่วงเวลา */}
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+            <Input
+              placeholder="ชื่อผู้ใช้งาน"
+              onChangeText={setUsername}
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
+            {/* <Input
+            placeholder="รหัสผ่านเดิม"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
             }}
-          />
-        </View>
-        {/* TODO: แก้ไข */}
-        <View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-evenly',
-            }}>
-            <Button
-              title={'ยกเลิก'}
-              ViewComponent={LinearGradient}
-              buttonStyle={{
-                borderRadius: 20,
-                marginVertical: 20,
-                width: 120,
-                height: 50,
-              }}
-              linearGradientProps={{
-                colors: ['#07B5FC', '#7DE2DC'],
-                start: {x: 0, y: 0.5},
-                end: {x: 1, y: 0.5},
-              }}
-              onPress={() => {
-                navigation.navigate('MainScreen');
+          /> */}
+            <Input
+              placeholder="รหัสผ่านใหม่"
+              onChangeText={setPassword}
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
               }}
             />
-            <Button
-              title={'บันทึก'}
-              ViewComponent={LinearGradient}
-              buttonStyle={{
-                borderRadius: 20,
-                marginVertical: 20,
-                width: 120,
-                height: 50,
-              }}
-              linearGradientProps={{
-                colors: ['#07B5FC', '#7DE2DC'],
-                start: {x: 0, y: 0.5},
-                end: {x: 1, y: 0.5},
-              }}
-              onPress={() => {
-                navigation.navigate('MainScreen');
+            {/* <Input
+            placeholder="เบอร์โทรศัพท์เดิม"
+            containerStyle={styles.containerStyle}
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={{
+              borderColor: '#76DFDE',
+              borderWidth: 2,
+              borderRadius: 5,
+            }}
+          /> */}
+            <Input
+              placeholder="เบอร์โทรศัพท์ใหม่"
+              onChangeText={setTell}
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
               }}
             />
+            <View
+              style={{
+                flexDirection: 'row',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            />
+          </View>
+          {/* TODO: แก้ไข */}
+          <View>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Button
+                title={'ยกเลิก'}
+                ViewComponent={LinearGradient}
+                buttonStyle={{
+                  borderRadius: 20,
+                  marginVertical: 20,
+                  width: 120,
+                  height: 50,
+                }}
+                linearGradientProps={{
+                  colors: ['#07B5FC', '#7DE2DC'],
+                  start: {x: 0, y: 0.5},
+                  end: {x: 1, y: 0.5},
+                }}
+                onPress={() => {
+                  navigation.navigate('MainScreen');
+                }}
+              />
+              <Button
+                title={'บันทึก'}
+                ViewComponent={LinearGradient}
+                buttonStyle={{
+                  borderRadius: 20,
+                  marginVertical: 20,
+                  width: 120,
+                  height: 50,
+                }}
+                linearGradientProps={{
+                  colors: ['#07B5FC', '#7DE2DC'],
+                  start: {x: 0, y: 0.5},
+                  end: {x: 1, y: 0.5},
+                }}
+                onPress={sighupHandler}
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -123,10 +196,8 @@ const styles = StyleSheet.create({
   container: {
     margin: 5,
     padding: 10,
-    borderWidth: 1,
-    borderColor: '#00B2FF',
-    borderRadius: 10,
     marginVertical: 10,
+    height: '80%',
     // flex: 1
   },
   textlable: {
@@ -157,7 +228,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   bodyForm: {
-    marginTop: 0,
-    marginLeft: -10,
+    marginLeft: 0,
+  },
+  inputStyle: {
+    borderColor: 'black',
+    padding: 10,
+  },
+  containerStyle: {
+    width: '90%',
+    height: 50,
+    marginTop: 15,
+  },
+  border: {
+    borderWidth: 1,
+    borderColor: '#00B2FF',
+    borderRadius: 10,
   },
 });

@@ -31,6 +31,7 @@ function Root() {
             }
             setIsFecth(false);
           })
+          // eslint-disable-next-line handle-callback-err
           .catch(err => {
             const errormsg = 'เกิดข้อผิดพลาด...';
             // console.log('เพิ่ม TOKEN ไม่ได้', err);

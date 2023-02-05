@@ -64,20 +64,64 @@ const ProfileScreen = ({navigation}) => {
               type="Ionicons"
               color="#35C5F5"
               size={32}
+              containerStyle={styles.iconStyle}
             />
-            <Input placeholder="ชื่อ - นามสกุล" />
+            <Input
+              placeholder="ชื่อ"
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
           </View>
           <View
             style={{
               flexDirection: 'row',
+              marginTop: 10,
+            }}>
+            <Icon
+              name="person-outline"
+              type="Ionicons"
+              color="#35C5F5"
+              size={32}
+              containerStyle={styles.iconStyle}
+            />
+            <Input
+              placeholder="นามสกุล"
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              paddingRight: 10,
             }}>
             <Icon
               name="show-chart"
               type="MaterialIcons"
               color="#35C5F5"
               size={32}
+              containerStyle={styles.iconStyle}
             />
-            <Input placeholder="อายุ" />
+            <Input
+              placeholder="อายุ"
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
           </View>
           <View
             style={{
@@ -88,8 +132,18 @@ const ProfileScreen = ({navigation}) => {
               type="MaterialIcons"
               color="#35C5F5"
               size={32}
+              containerStyle={styles.iconStyle}
             />
-            <Input placeholder="น้ำหนัก" />
+            <Input
+              placeholder="น้ำหนัก"
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
           </View>
           <View
             style={{
@@ -100,15 +154,40 @@ const ProfileScreen = ({navigation}) => {
               type="fontisto"
               color="#35C5F5"
               size={32}
+              containerStyle={styles.iconStyle}
             />
-            <Input placeholder="โรคประจำตัว" />
+            <Input
+              placeholder="โรคประจำตัว"
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
           </View>
           <View
             style={{
               flexDirection: 'row',
             }}>
-            <Icon name="pills" type="fontisto" color="#35C5F5" size={32} />
-            <Input placeholder="ประวัติแพ้ยา" />
+            <Icon
+              name="pills"
+              type="fontisto"
+              color="#35C5F5"
+              size={32}
+              containerStyle={styles.iconStyle}
+            />
+            <Input
+              placeholder="ประวัติแพ้ยา"
+              containerStyle={styles.containerStyle}
+              inputStyle={styles.inputStyle}
+              inputContainerStyle={{
+                borderColor: '#76DFDE',
+                borderWidth: 2,
+                borderRadius: 5,
+              }}
+            />
           </View>
 
           <View>
@@ -158,15 +237,62 @@ const ProfileScreen = ({navigation}) => {
                 type="Ionicons"
                 color="#35C5F5"
                 size={32}
+                containerStyle={styles.iconStyle}
               />
-              <Input placeholder="ชื่อผู้ใช้งาน" />
+              <Input
+                placeholder="ชื่อผู้ใช้งาน"
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                inputContainerStyle={{
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}
+              />
             </View>
             <View
               style={{
                 flexDirection: 'row',
               }}>
-              <Icon name="phone" type="Feather" color="#35C5F5" size={32} />
-              <Input placeholder="เบอร์โทรศัพท์" />
+              <Icon
+                name="key"
+                type="fontisto"
+                color="#35C5F5"
+                size={32}
+                containerStyle={styles.iconStyle}
+              />
+              <Input
+                placeholder="รหัสผ่าน"
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                inputContainerStyle={{
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}
+              />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+              }}>
+              <Icon
+                name="phone"
+                type="Feather"
+                color="#35C5F5"
+                size={32}
+                containerStyle={styles.iconStyle}
+              />
+              <Input
+                placeholder="เบอร์โทรศัพท์"
+                containerStyle={styles.containerStyle}
+                inputStyle={styles.inputStyle}
+                inputContainerStyle={{
+                  borderColor: '#76DFDE',
+                  borderWidth: 2,
+                  borderRadius: 5,
+                }}
+              />
             </View>
             <View
               style={{
@@ -240,5 +366,17 @@ const styles = StyleSheet.create({
   bodyForm: {
     marginTop: 0,
     marginLeft: -10,
+  },
+  inputStyle: {
+    borderColor: 'black',
+    padding: 10,
+  },
+  containerStyle: {
+    width: 320,
+    height: 50,
+    marginTop: 15,
+  },
+  iconStyle: {
+    marginTop: 20,
   },
 });

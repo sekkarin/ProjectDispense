@@ -31,6 +31,7 @@ function AuthContextProvider({children}) {
     logout: logout,
     USERID: id,
   };
+  // eslint-disable-next-line react/react-in-jsx-scope
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 export default AuthContextProvider;

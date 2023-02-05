@@ -12,7 +12,7 @@ const LoginForgot = ({navigation}) => {
       <Header
         // eslint-disable-next-line react-native/no-inline-styles
         containerStyle={{
-          height: 90,
+          height: 120,
           borderRadius: 18,
           alignItems: 'center',
           justifyContent: 'center',

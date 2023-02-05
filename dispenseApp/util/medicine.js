@@ -41,3 +41,4 @@ export async function getMedRecord() {
 export async function getMedRecordByUser(userId) {
   return await axios.get(URL + 'MedRecord.json');
 }
+
