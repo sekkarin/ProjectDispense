@@ -16,7 +16,7 @@ import moment from 'moment';
 // [x] add image
 // FIXME:
 /** */
-const AddMedicine = ({navigation, rout}) => {
+const AddMedicine = ({navigation}) => {
   const [isFetch, setIsFecth] = React.useState(false);
   const [selectedIndex, setIndex] = React.useState(0);
   const [checked, setChecked] = React.useState(true);

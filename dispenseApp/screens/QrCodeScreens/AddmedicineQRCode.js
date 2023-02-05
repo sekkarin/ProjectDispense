@@ -3,13 +3,12 @@ import {StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useContext} from 'react';
 import {Button, CheckBox, Header, Icon, Image} from '@rneui/base';
 import LinearGradient from 'react-native-linear-gradient';
-import {Input, ListItem} from '@rneui/themed';
+import {Input} from '@rneui/themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {Shadow} from 'react-native-shadow-2';
 import LoadingOverlay from '../../components/UI/LoadingOverlay';
 import {createMedicine, createMedRecord} from '../../util/medicine';
 import {AuthContext} from '../../store/auth-context';
-import {useEffect} from 'react';
 import moment from 'moment';
 
 // TODO:
@@ -112,7 +111,7 @@ const AddmedicineQRCode = ({navigation, route}) => {
         setMedRecNotiTime(3);
         break;
     }
-  }, []);
+  }, [medObjec.medRecNotiTime, medObjec.medRec_BefAft]);
   if (isFetch) {
     return <LoadingOverlay />;
   }
